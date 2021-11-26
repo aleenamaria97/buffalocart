@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Regression Suite">
+    <listeners>
+        <listener class-name="com.buffalocart.listener.TestListener"/>
+    </listeners>
+    <test name="DEMO WEB SHOP">
+        <parameter name="browser" value="Chrome"/>
+
+    <classes>
+    <class name="com.buffalocart.testscripts.LoginTest">
+        <methods>
+            <include name="verifyLoginPageTitle"/>
+            <exclude name="verifyUserLoginWithValidUserCredentials"/>
+            <exclude name="verifyTheErrorMessageDisplayedForUserLoginWithInValidUserCredentials"/>
+            <exclude name="verifyWhetherTheUserIsAbleToClickOnRememberMeCheckbox"/>
+        </methods>
+    </class>
+        <class name="com.buffalocart.testscripts.ResetTest">
+            <methods>
+                <exclude name="verifyErrorMessageDisplayedOnResetPasswordPageWithInvalidEmailId"/>
+            </methods>
+        </class>
+        <class name="com.buffalocart.testscripts.HomeTest">
+            <methods>
+                <exclude name="verifyHomePageTitle"/>
+                <exclude name="verifyDateDisplayedInHomePage"/>
+            </methods>
+        </class>
+        <class name="com.buffalocart.testscripts.SignOutTest">
+            <methods>
+                <exclude name="verifyUserIsNavigatingToLoginPageByClickingOnSignOutButton"/>
+            </methods>
+        </class>
+    </classes>
+    </test>
+</suite>
+
