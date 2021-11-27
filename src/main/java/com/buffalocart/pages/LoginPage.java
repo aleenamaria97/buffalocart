@@ -12,7 +12,7 @@ import java.util.List;
 
 public class LoginPage extends TestHelperUtility {
     WebDriver driver;
-    public  LoginPage(WebDriver driver){
+    public  LoginPage(WebDriver driver) throws IOException {
         this.driver=driver;
         PageFactory.initElements(driver,this);
     }
@@ -37,6 +37,7 @@ public class LoginPage extends TestHelperUtility {
     private final String _ForgotPassWord="//a[@class='btn btn-link']";
     @FindBy(xpath =_ForgotPassWord)
     private WebElement forgotPassword;
+    List<String> readExcelData = excel.readDataFromExcel(Constants.EXCEL_FILE_PATH, Constants.EXCEL_SHEET_LOGIN_PAGE);
     public String get_LoginPageActualTitle(){
         return page.getPageTitle(driver);
     }
@@ -44,29 +45,54 @@ public class LoginPage extends TestHelperUtility {
         List<String> readExcelData = excel.readDataFromExcel(Constants.EXCEL_FILE_PATH, Constants.EXCEL_SHEET_LOGIN_PAGE);
         return readExcelData.get(0);
     }
-    public String get_ErrorMessage() throws IOException {
-        List<String> readExcelData = excel.readDataFromExcel(Constants.EXCEL_FILE_PATH, Constants.EXCEL_SHEET_LOGIN_PAGE);
+    public String get_ErrorMessageForTitle() throws IOException {
+
         return readExcelData.get(1);
+    }
+    public String get_UserName(){
+        return readExcelData.get(2);
     }
     public void enterUserName(String uName){
          page.enterText(userName,uName);
     }
+    public String get_Password(){
+        return readExcelData.get(3);
+    }
     public void enterPassword(String pWord){
         page.enterText(password,pWord);
     }
-    public HomePage clickOnLoginButton(){
+    public String getExpectedUserName(){
+        return readExcelData.get(5);
+    }
+    public String getErrorMsdForLogin(){
+        return readExcelData.get(4);
+    }
+    public HomePage clickOnLoginButton() throws IOException {
          page.clickOnElement(loginButton);
          return new HomePage(driver);
     }
-   public String get_InvalidCredentialsErrorMessage(){
+    public String getInvalidPWord(){
+        return readExcelData.get(6);
+    }
+   public String getInvalidCredentialsErrorMessage(){
         return page.getElementText(errorMsg);
+   }
+   public String getInvalidCredentialsExpectedErrorMsg(){
+        return readExcelData.get(7);
+   }
+   public String getErrorMsgForInvalidCredentials(){
+        return  readExcelData.get(8);
+   }
+   public String getErrorMsgForSignOutTest(){
+        return readExcelData.get(9);
    }
    public boolean rememberMeCheckBox(){
         page.clickOnElement(rememberMe);
         return page.isElementSelected(rememberMe);
    }
-  public ResetPage clickOnForgotPassword(){
+  public ResetPage clickOnForgotPassword() throws IOException {
         page.clickOnElement(forgotPassword);
         return new ResetPage(driver);
   }
 }
+

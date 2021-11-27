@@ -1,17 +1,21 @@
 package com.buffalocart.pages;
 
+import com.buffalocart.constants.Constants;
 import com.buffalocart.utilities.TestHelperUtility;
+import com.buffalocart.utilities.WaitUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class HomePage extends TestHelperUtility {
     WebDriver driver;
-    public  HomePage(WebDriver driver){
+    public  HomePage(WebDriver driver) throws IOException {
         this.driver=driver;
         PageFactory.initElements(driver,this);
     }
@@ -34,9 +38,15 @@ public class HomePage extends TestHelperUtility {
          page.clickOnElement(userName);
          return new SignOutPage(driver);
     }
-
-    public String getHomePageTitle(){
+    List<String> readExcelData = excel.readDataFromExcel(Constants.EXCEL_FILE_PATH, Constants.EXCEL_SHEET_HOME_PAGE);
+    public String getHomePageActualTitle(){
         return page.getPageTitle(driver);
+    }
+    public String getHomePageExpectedTitle(){
+        return readExcelData.get(0);
+    }
+    public String getTitleErrorMsg(){
+        return readExcelData.get(1);
     }
     public String getHomePageDate(){
         return page.getElementText(date);
@@ -45,5 +55,8 @@ public class HomePage extends TestHelperUtility {
        Date date = new Date();
        String exdate = new SimpleDateFormat("MM/dd/yyyy").format(date);
        return exdate;
+   }
+   public String getDateErrorMsg(){
+        return readExcelData.get(2);
    }
 }

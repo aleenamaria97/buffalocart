@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ResetPage extends TestHelperUtility {
     WebDriver driver;
-    public ResetPage(WebDriver driver){
+    public ResetPage(WebDriver driver) throws IOException {
         this.driver=driver;
         PageFactory.initElements(driver,this);
     }
@@ -26,15 +26,22 @@ public class ResetPage extends TestHelperUtility {
     @FindBy(xpath = _ErrorMsg)
     private WebElement errorMessage;
 
+    List<String> readExcelData = excel.readDataFromExcel(Constants.EXCEL_FILE_PATH, Constants.EXCEL_SHEET_FORGOT_PASSWORD_PAGE);
+    public void setEmailAddress() {
 
-    public void setEmailAddress() throws IOException {
-        List<String> readExcelData = excel.readDataFromExcel(Constants.EXCEL_FILE_PATH, Constants.EXCEL_SHEET_FORGOT_PASSWORD_PAGE);
         page.enterText(emailAddress,readExcelData.get(0));
     }
     public void pWResetButton() {
       page.clickOnElement(pWResetButton);
     }
-    public String getErrorMessage(){
+    public String getActualErrorMessage(){
       return page.getElementText(errorMessage);
     }
+    public String getExpectedErrorMessage(){
+        return readExcelData.get(1);
     }
+    public String get_ErrorMsg(){
+        return readExcelData.get(2);
+    }
+    }
+

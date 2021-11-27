@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.IOException;
+
 public class SignOutPage extends TestHelperUtility {
     WebDriver driver;
     public SignOutPage(WebDriver driver){
@@ -15,7 +17,7 @@ public class SignOutPage extends TestHelperUtility {
     private final String _signOut="//div[@class='pull-right']//a[@class='btn btn-default btn-flat']";
     @FindBy(xpath = _signOut)
     private WebElement signOut;
-    public LoginPage logOut(){
+    public LoginPage clickOnLogOutButton() throws IOException {
         page.clickOnElement(signOut);
         return new LoginPage(driver);
     }

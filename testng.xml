@@ -10,7 +10,7 @@
     <classes>
     <class name="com.buffalocart.testscripts.LoginTest">
         <methods>
-            <include name="verifyLoginPageTitle"/>
+            <exclude name="verifyLoginPageTitle"/>
             <exclude name="verifyUserLoginWithValidUserCredentials"/>
             <exclude name="verifyTheErrorMessageDisplayedForUserLoginWithInValidUserCredentials"/>
             <exclude name="verifyWhetherTheUserIsAbleToClickOnRememberMeCheckbox"/>
@@ -32,6 +32,25 @@
                 <exclude name="verifyUserIsNavigatingToLoginPageByClickingOnSignOutButton"/>
             </methods>
         </class>
+        <class name="com.buffalocart.testscripts.UserManagementTest">
+            <methods>
+                <exclude name="verifyUserManagementSubTabs"/>
+            </methods>
+        </class>
+        <class name="com.buffalocart.testscripts.UserTest">
+            <methods>
+                <exclude name="verifyUserPageTitle"/>
+                <exclude name="verifyUserSearchWithValidData"/>
+                <exclude name="verifyMessageDisplayedByUserSearchWithInvalidData"/>
+            </methods>
+        </class>
+       <class name="com.buffalocart.testscripts.AddUserTest">
+           <methods>
+               <exclude name="verifyTheErrorMessageDisplayedWithoutFillingMandatoryFieldsInAddUserForm"/>
+               <exclude name="verifyUserLoginWithNewlyAddedUser"/>
+               <include name="verifyAddedUsePageTitle"/>
+           </methods>
+       </class>
     </classes>
     </test>
 </suite>
