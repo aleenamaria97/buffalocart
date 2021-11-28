@@ -21,7 +21,6 @@ public class ResetTest extends Base {
         login=new LoginPage(driver);
         reset =login.clickOnForgotPassword();
         extentTest.get().log(Status.PASS, "Click on forgot password");
-        reset =new ResetPage(driver);
         reset.setEmailAddress();
         extentTest.get().log(Status.PASS, "Invalid email is entered");
         reset.pWResetButton();
@@ -30,9 +29,8 @@ public class ResetTest extends Base {
         extentTest.get().log(Status.PASS, "Actual message is generated");
         String expectedMessage= reset.getExpectedErrorMessage();
         extentTest.get().log(Status.PASS, "Expected message is generated");
-        String errorMessage=reset.get_ErrorMsg();
         extentTest.get().log(Status.PASS, "Error message is generated");
-        Assert.assertEquals(actualMessage,expectedMessage,errorMessage);
+        Assert.assertEquals(actualMessage,expectedMessage,"Error:Error message not displayed");
         extentTest.get().log(Status.PASS, "Verify error message displayed on  Reset Password page with invalid email id test passed");
     }
 }

@@ -38,9 +38,8 @@ public class UserManagementTest extends Base {
         extentTest.get().log(Status.PASS, "Expected tab list generated");
         List<String> actualTabs= userManagement.getActualUserManagementTabs();
         extentTest.get().log(Status.PASS, "Actual tab list generated");
-        String errorMsg=userManagement.getErrorMsg();
         SoftAssert soft=new SoftAssert();
-        soft.assertEquals(actualTabs,expectedTabs,errorMsg);
+        soft.assertEquals(actualTabs,expectedTabs,"Error:user management tabs not founded");
         soft.assertAll();
         sign= home.clickOnUserName();
         login= sign.clickOnLogOutButton();

@@ -45,9 +45,6 @@ public class HomePage extends TestHelperUtility {
     public String getHomePageExpectedTitle(){
         return readExcelData.get(0);
     }
-    public String getTitleErrorMsg(){
-        return readExcelData.get(1);
-    }
     public String getHomePageDate(){
         return page.getElementText(date);
     }
@@ -56,7 +53,4 @@ public class HomePage extends TestHelperUtility {
        String exdate = new SimpleDateFormat("MM/dd/yyyy").format(date);
        return exdate;
    }
-   public String getDateErrorMsg(){
-        return readExcelData.get(2);
-   }
-}
+  }

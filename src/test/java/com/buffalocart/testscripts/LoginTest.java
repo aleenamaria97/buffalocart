@@ -26,8 +26,7 @@ public class LoginTest extends Base {
         extentTest.get().log(Status.PASS, "Actual login page title generated");
         String expectedTitle=login.get_LoginPageExpectedTitle();
         extentTest.get().log(Status.PASS, "Expected login page title generated");
-        String errorMessage=login.get_ErrorMessageForTitle();
-        Assert.assertEquals(actualTitle,expectedTitle,errorMessage);
+        Assert.assertEquals(actualTitle,expectedTitle,"Error:Invalid Login Page Title Found");
         extentTest.get().log(Status.PASS, "verify title test case passed");
 
     }
@@ -49,8 +48,7 @@ public class LoginTest extends Base {
         extentTest.get().log(Status.PASS, "Actual user name generated");
         String expectedUserName=login.getExpectedUserName();
         extentTest.get().log(Status.PASS, "expected  user name generated");
-        String errorMessage=login.getErrorMsdForLogin();
-        soft.assertEquals(actualUserName,expectedUserName,errorMessage);
+        soft.assertEquals(actualUserName,expectedUserName,"Error:invalid user credentials");
         soft.assertAll();
         extentTest.get().log(Status.PASS, "Verify user login with valid user credentials test passed");
         home.clickOnUserName();
@@ -70,8 +68,7 @@ public class LoginTest extends Base {
         extentTest.get().log(Status.PASS, "expected error message is generated");
         String actualErrorMessage= login.getInvalidCredentialsErrorMessage();
         extentTest.get().log(Status.PASS, "actual error message is generated");
-        String errorMessage=login.getErrorMsgForInvalidCredentials();
-        Assert.assertEquals(actualErrorMessage,expectedErrorMessage,errorMessage);
+        Assert.assertEquals(actualErrorMessage,expectedErrorMessage,"Error:Test Failed");
         extentTest.get().log(Status.PASS, "Verify user login with in valid user credentials test passed");
     }
     @Test(priority = 4,enabled = true,description = "TC_004_Verify whether the user is able to click on 'Remember me' checkbox")

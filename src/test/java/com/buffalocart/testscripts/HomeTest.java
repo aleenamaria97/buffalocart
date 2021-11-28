@@ -32,9 +32,8 @@ public class HomeTest extends Base {
         extentTest.get().log(Status.PASS, "Clicked on end tour");
         String actualTitle= home.getHomePageActualTitle();
         String expectedTitle= home.getHomePageExpectedTitle();
-        String errorMessage= home.getTitleErrorMsg();
         SoftAssert soft=new SoftAssert();
-        soft.assertEquals(actualTitle,expectedTitle,errorMessage);
+        soft.assertEquals(actualTitle,expectedTitle,"Error:Title Miss match");
         soft.assertAll();
         sign= home.clickOnUserName();
         login=sign.clickOnLogOutButton();
@@ -55,10 +54,9 @@ public class HomeTest extends Base {
         String expectedDate=home.setHomePageDate();
         extentTest.get().log(Status.PASS, "expected date generated");
         String actualDate=home.getHomePageDate();
-        String errorMessage= home.getDateErrorMsg();
         extentTest.get().log(Status.PASS, "actual date generated");
         SoftAssert soft=new SoftAssert();
-        soft.assertEquals(actualDate,expectedDate,errorMessage);
+        soft.assertEquals(actualDate,expectedDate,"Error:Date is mismatched");
         soft.assertAll();
         sign= home.clickOnUserName();
         login=sign.clickOnLogOutButton();

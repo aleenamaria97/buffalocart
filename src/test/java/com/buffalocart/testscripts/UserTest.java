@@ -40,8 +40,7 @@ public class UserTest extends Base {
         extentTest.get().log(Status.PASS, "Actual user page title generated");
         String expectedTitle = user.getUserPageExpectedTitle();
         extentTest.get().log(Status.PASS, "Expected user page title generated");
-        String errorMsg = user.getTitleErrorMsg();
-        soft.assertEquals(actualTitle, expectedTitle, errorMsg);
+        soft.assertEquals(actualTitle, expectedTitle, "Error:invalidUserPageTitle");
         soft.assertAll();
         sign = home.clickOnUserName();
         login = sign.clickOnLogOutButton();
@@ -70,8 +69,7 @@ public class UserTest extends Base {
         user.searchUser(user.getUserNameToSearch());
         //String actualUserData = user.validateUserName();
         String expectedUserData = user.getUserNameToSearch();
-        //String errorMsg = user.searchUserErrorMsg();
-        //soft.assertEquals(actualUserData, expectedUserData, errorMsg);
+        //soft.assertEquals(actualUserData, expectedUserData, "Error:No user founded");
         soft.assertAll();
         sign = home.clickOnUserName();
         login = sign.clickOnLogOutButton();
@@ -100,8 +98,7 @@ public class UserTest extends Base {
         extentTest.get().log(Status.PASS, "Invalid data entered");
         String actualMsg = user.getNoUserFoundActualMsg();
         String expectedMsg = user.getNoUserFoundExpectedMsg();
-        String errorMsg = user.noUserFoundErrorMsg();
-        soft.assertEquals(actualMsg, expectedMsg, errorMsg);
+        soft.assertEquals(actualMsg, expectedMsg, "Error:User with matched records founded");
         soft.assertAll();
         sign = home.clickOnUserName();
         login = sign.clickOnLogOutButton();

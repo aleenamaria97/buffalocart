@@ -35,9 +35,8 @@ public class SignOutTest extends Base {
         extentTest.get().log(Status.PASS, "Clicked on logout button");
         String actualTitle= login.get_LoginPageActualTitle();
         String expectedTitle=login.get_LoginPageExpectedTitle();
-        String errorMsg=login.getErrorMsgForSignOutTest();
         SoftAssert soft=new SoftAssert();
-        soft.assertEquals(actualTitle,expectedTitle,errorMsg);
+        soft.assertEquals(actualTitle,expectedTitle,"Error:Navigation to login page failed");
         extentTest.get().log(Status.PASS, "User is successfully navigated to LoginPage");
     }
 

@@ -23,12 +23,9 @@ public class UserPage extends TestHelperUtility {
     private final String _SearchBar="//input[@class='form-control input-sm']";
     @FindBy(xpath = _SearchBar)
     private WebElement searchBar;
-//    private final String _TableElement="//table[@id='users_table']//tr";
-//    @FindBy(xpath = _TableElement)
-//    private  WebElement tableElement;
-//    private final String _TableCellElement="//table[@id='users_table']//tr//td";
-//    @FindBy(xpath = _TableCellElement)
-//    private  List<WebElement> tableCellElement;
+    private final String _TableCellElement="//table[@id='users_table']//tr//td[@class='sorting_1']";
+    @FindBy(xpath = _TableCellElement)
+    private  List<WebElement> tableCellElement;
     private final String _InvalidUserMsg="//td[@class='dataTables_empty']";
     @FindBy(xpath = _InvalidUserMsg)
     private WebElement invalidUserMsg;
@@ -43,11 +40,8 @@ public class UserPage extends TestHelperUtility {
     public String getUserPageExpectedTitle(){
         return readExcelData.get(0);
     }
-    public String getTitleErrorMsg(){
-        return readExcelData.get(1);
-    }
     public String getUserNameToSearch(){
-        return readExcelData.get(2);
+        return readExcelData.get(1);
     }
     public void searchUser(String uName){
         page.enterText(searchBar,uName);
@@ -56,11 +50,9 @@ public class UserPage extends TestHelperUtility {
 //        wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _ValidateUser);
 //        return page.getElementText(validateUser);
 //    }
-//    public String searchUserErrorMsg(){
-//        return readExcelData.get(3);
-//    }
+//
     public String getInvalidUserName(){
-        return readExcelData.get(4);
+        return readExcelData.get(2);
     }
 
     public String getNoUserFoundActualMsg(){
@@ -68,10 +60,7 @@ public class UserPage extends TestHelperUtility {
         return page.getElementText(invalidUserMsg);
     }
     public String getNoUserFoundExpectedMsg(){
-        return readExcelData.get(5);
-    }
-    public String noUserFoundErrorMsg(){
-        return readExcelData.get(6);
+        return readExcelData.get(3);
     }
     public AddUserPage clickAddUserTab() throws IOException {
         page.clickOnElement(addUsertab);

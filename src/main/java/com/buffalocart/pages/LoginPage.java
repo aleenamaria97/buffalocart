@@ -45,48 +45,35 @@ public class LoginPage extends TestHelperUtility {
         List<String> readExcelData = excel.readDataFromExcel(Constants.EXCEL_FILE_PATH, Constants.EXCEL_SHEET_LOGIN_PAGE);
         return readExcelData.get(0);
     }
-    public String get_ErrorMessageForTitle() throws IOException {
-
-        return readExcelData.get(1);
-    }
     public String get_UserName(){
-        return readExcelData.get(2);
+        return readExcelData.get(1);
     }
     public void enterUserName(String uName){
          page.enterText(userName,uName);
     }
     public String get_Password(){
-        return readExcelData.get(3);
+        return readExcelData.get(2);
     }
     public void enterPassword(String pWord){
         page.enterText(password,pWord);
     }
     public String getExpectedUserName(){
-        return readExcelData.get(5);
-    }
-    public String getErrorMsdForLogin(){
-        return readExcelData.get(4);
+        return readExcelData.get(3);
     }
     public HomePage clickOnLoginButton() throws IOException {
          page.clickOnElement(loginButton);
          return new HomePage(driver);
     }
     public String getInvalidPWord(){
-        return readExcelData.get(6);
+        return readExcelData.get(4);
     }
    public String getInvalidCredentialsErrorMessage(){
         return page.getElementText(errorMsg);
    }
    public String getInvalidCredentialsExpectedErrorMsg(){
-        return readExcelData.get(7);
+        return readExcelData.get(5);
    }
-   public String getErrorMsgForInvalidCredentials(){
-        return  readExcelData.get(8);
-   }
-   public String getErrorMsgForSignOutTest(){
-        return readExcelData.get(9);
-   }
-   public boolean rememberMeCheckBox(){
+     public boolean rememberMeCheckBox(){
         page.clickOnElement(rememberMe);
         return page.isElementSelected(rememberMe);
    }

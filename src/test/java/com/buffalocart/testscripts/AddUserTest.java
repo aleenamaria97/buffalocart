@@ -41,15 +41,14 @@ public class AddUserTest extends Base {
         addUser.clickOnSaveButton();
         String actualMsg= addUser.getActualErrorMsg();
         String expectedMsg=addUser.getExpectedErrorMsg();
-        String errorMsg=addUser.getTestEMsg();
-        soft.assertEquals(actualMsg, expectedMsg, errorMsg);
+        soft.assertEquals(actualMsg, expectedMsg, "Error:Error message is not displayed");
         soft.assertAll();
         sign = home.clickOnUserName();
         login = sign.clickOnLogOutButton();
         extentTest.get().log(Status.PASS, "Logout from user page and redirected to login page");
     }
     @Test(priority = 14, enabled = true, description = "TC_014_Verify user login with newly added user")
-    public void verifyUserLoginWithNewlyAddedUser() throws IOException {
+    public void verifyUserLoginWithNewlyAddedUser() throws IOException, InterruptedException {
         extentTest.get().assignCategory("Regression");
         login = new LoginPage(driver);
         soft = new SoftAssert();
@@ -76,28 +75,28 @@ public class AddUserTest extends Base {
         extentTest.get().log(Status.PASS, "Email entered");
         addUser.selectRole();
         extentTest.get().log(Status.PASS, "Selected Role");
-        addUser.enterUserName(addUser.get_uName());
+        addUser.enterUserName(addUser.get_UserName());
         extentTest.get().log(Status.PASS, "User Name entered");
-        addUser.enterPassWord(addUser.get_pword());
+        addUser.enterPassWord(addUser.get_PWord());
         extentTest.get().log(Status.PASS, "Password entered");
-        addUser.enterConfirmPassWord(addUser.get_CPword());
+        addUser.enterConfirmPassWord(addUser.get_CPWord());
         extentTest.get().log(Status.PASS, "Confirmation password entered");
         addUser.clickOnSaveButton();
         extentTest.get().log(Status.PASS, "Clicked on saved button");
         sign=home.clickOnUserName();
-        sign.clickOnLogOutButton();
+        login=sign.clickOnLogOutButton();
         extentTest.get().log(Status.PASS, "Clicked on log out");
-        addUser.enterUserName(addUser.get_uName());
-        addUser.enterPassWord(addUser.get_pword());
-        home = login.clickOnLoginButton();
-        home.endTour();
+        login.enterUserName(addUser.get_UserName());
+        addUser.enterPassWord(addUser.get_UserName());
+        extentTest.get().log(Status.PASS, "New user credentials entered");
+        login.clickOnLoginButton();
         String actualTitle= home.getHomePageActualTitle();
         String expectedTitle= home.getHomePageExpectedTitle();
-        String errorMessage= home.getTitleErrorMsg();
-        soft.assertEquals(actualTitle,expectedTitle,errorMessage);
+        soft.assertEquals(actualTitle,expectedTitle,"Verify user login with newly added user test failed");
         soft.assertAll();
         sign= home.clickOnUserName();
         login=sign.clickOnLogOutButton();
+        extentTest.get().log(Status.PASS, "Clicked on log out");
     }
     @Test(priority = 15, enabled = true, description = "TC_015_Verify  Add Users page title")
     public void verifyAddedUsePageTitle() throws IOException {
@@ -119,8 +118,7 @@ public class AddUserTest extends Base {
         addUser = user.clickAddUserTab();
         String actualTitle=addUser.getPageTitle();
         String expectedTitle=addUser.getPageExpectedTitle();
-        String errorMsg=addUser.pageTitleEmsg();
-        soft.assertEquals(actualTitle,expectedTitle,errorMsg);
+        soft.assertEquals(actualTitle,expectedTitle,"Error:Add user page title not founded");
         soft.assertAll();
         sign= home.clickOnUserName();
         login=sign.clickOnLogOutButton();}

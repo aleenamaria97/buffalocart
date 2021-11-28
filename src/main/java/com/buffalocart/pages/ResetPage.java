@@ -40,8 +40,5 @@ public class ResetPage extends TestHelperUtility {
     public String getExpectedErrorMessage(){
         return readExcelData.get(1);
     }
-    public String get_ErrorMsg(){
-        return readExcelData.get(2);
-    }
     }
 

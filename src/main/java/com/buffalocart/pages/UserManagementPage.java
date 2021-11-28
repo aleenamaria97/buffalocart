@@ -34,7 +34,7 @@ public class UserManagementPage extends TestHelperUtility {
     List<String> readData = excel.readDataFromExcel(Constants.EXCEL_FILE_PATH, Constants.EXCEL_SHEET_USER_MANAGEMENT_PAGE);
     public List<String> getExpectedUserManagementTabs(){
     List<String>expectedTabs=new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < readData.size(); i++) {
         expectedTabs.add(readData.get(i));
     }
         return expectedTabs;
@@ -47,9 +47,7 @@ public class UserManagementPage extends TestHelperUtility {
             }
         return actualData;
     }
-    public String getErrorMsg(){
-        return readData.get(3);
-    }
+
     public UserPage clickOnUserTabs() throws IOException {
         wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _userTab);
         page.clickOnElement(userTab);
