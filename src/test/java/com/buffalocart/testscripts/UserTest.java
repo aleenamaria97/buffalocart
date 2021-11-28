@@ -67,9 +67,9 @@ public class UserTest extends Base {
         user = userManagement.clickOnUserTabs();
         extentTest.get().log(Status.PASS, "clicked on user tab and redirected to user page");
         user.searchUser(user.getUserNameToSearch());
-        //String actualUserData = user.validateUserName();
+        String actualUserData = user.getActualUserIdAfterSearch();
         String expectedUserData = user.getUserNameToSearch();
-        //soft.assertEquals(actualUserData, expectedUserData, "Error:No user founded");
+        soft.assertEquals(actualUserData, expectedUserData, "Error:No user founded");
         soft.assertAll();
         sign = home.clickOnUserName();
         login = sign.clickOnLogOutButton();

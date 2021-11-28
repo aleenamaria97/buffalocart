@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserPage extends TestHelperUtility {
@@ -25,7 +26,7 @@ public class UserPage extends TestHelperUtility {
     private WebElement searchBar;
     private final String _TableCellElement="//table[@id='users_table']//tr//td[@class='sorting_1']";
     @FindBy(xpath = _TableCellElement)
-    private  List<WebElement> tableCellElement;
+    private  WebElement tableCellElement;
     private final String _InvalidUserMsg="//td[@class='dataTables_empty']";
     @FindBy(xpath = _InvalidUserMsg)
     private WebElement invalidUserMsg;
@@ -46,11 +47,27 @@ public class UserPage extends TestHelperUtility {
     public void searchUser(String uName){
         page.enterText(searchBar,uName);
     }
-//    public String validateUserName(){
-//        wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _ValidateUser);
-//        return page.getElementText(validateUser);
-//    }
-//
+    public List<String> getUserNameActualList() {
+        wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _TableCellElement);
+        List<WebElement> tableCellUserValues =page.getWebElementList(driver,_TableCellElement);
+        List<String> userList=new ArrayList<>();
+        for (int i = 0; i < tableCellUserValues.size(); i++) {
+            userList.add(page.getElementText(tableCellUserValues.get(i)));
+        }
+        return userList;
+        }
+    public String getActualUserIdAfterSearch() {
+        wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _TableCellElement);
+        List<WebElement> usersListWebElement = page.getWebElementList(driver, _TableCellElement);
+        String actualUserValue = page.getElementText(usersListWebElement.get(0));
+        if (actualUserValue != " ") {
+            System.out.println("True");
+            return actualUserValue;
+        } else {
+            return " ";
+        }
+    }
+
     public String getInvalidUserName(){
         return readExcelData.get(2);
     }

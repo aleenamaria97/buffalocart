@@ -6,7 +6,13 @@
     </listeners>
     <test name="DEMO WEB SHOP">
         <parameter name="browser" value="Chrome"/>
-
+        <groups>
+            <run>
+                <include name="Regression"/>
+                    <exclude name="Sanity"/>
+                    <include name="Smoke"/>
+            </run>
+        </groups>
     <classes>
     <class name="com.buffalocart.testscripts.LoginTest">
         <methods>
