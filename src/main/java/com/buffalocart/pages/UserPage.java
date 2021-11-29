@@ -47,21 +47,11 @@ public class UserPage extends TestHelperUtility {
     public void searchUser(String uName){
         page.enterText(searchBar,uName);
     }
-    public List<String> getUserNameActualList() {
-        wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _TableCellElement);
-        List<WebElement> tableCellUserValues =page.getWebElementList(driver,_TableCellElement);
-        List<String> userList=new ArrayList<>();
-        for (int i = 0; i < tableCellUserValues.size(); i++) {
-            userList.add(page.getElementText(tableCellUserValues.get(i)));
-        }
-        return userList;
-        }
     public String getActualUserIdAfterSearch() {
         wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _TableCellElement);
         List<WebElement> usersListWebElement = page.getWebElementList(driver, _TableCellElement);
         String actualUserValue = page.getElementText(usersListWebElement.get(0));
         if (actualUserValue != " ") {
-            System.out.println("True");
             return actualUserValue;
         } else {
             return " ";
