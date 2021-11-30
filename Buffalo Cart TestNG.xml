@@ -54,7 +54,13 @@
        </class>
         <class name="com.buffalocart.testscripts.UpdateUserTest">
             <methods>
-                <include name="verifyEditUserPageTitle"/>
+                <exclude name="verifyEditUserPageTitle"/>
+                <include name="verifyUserCanEditTheUserDetails"/>
+            </methods>
+        </class>
+        <class name="com.buffalocart.testscripts.DeleteUserTest">
+            <methods>
+                <exclude name="verifyUserCanDeleteAUser"/>
             </methods>
         </class>
     </classes>

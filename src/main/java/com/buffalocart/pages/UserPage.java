@@ -39,10 +39,13 @@ public class UserPage extends TestHelperUtility {
     private final String _rElement = "//table[@id='users_table']//tbody//tr";
     @FindBy(xpath = _rElement)
     private List<WebElement> rowElement;
-
     private final String _cElement = "//table[@id='users_table']//tbody//tr//td";
     @FindBy(xpath = _cElement)
     private List<WebElement> colElement;
+    public final String _DeleteButton="//a[@class='btn btn-xs btn-primary']";
+    @FindBy(xpath = _DeleteButton)
+    private WebElement deleteTab;
+    boolean values;
 
 
     List<String> readExcelData = excel.readDataFromExcel(Constants.EXCEL_FILE_PATH, Constants.EXCEL_SHEET_USER_PAGE);
@@ -85,11 +88,13 @@ public class UserPage extends TestHelperUtility {
        return new AddUserPage(driver);
     }
     public List<ArrayList<String>> getTableData() {
+        wait.IMPLICIT_WAIT(6000);
         wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _cElement);
         return table.getGridData(rowElement, colElement);
     }
 
     public boolean getTableDataContains(List<ArrayList<String>> tableData, String expectedUserName){
+
         boolean value = false;
         for(int i=0;i<tableData.size();i++){
             if(tableData.get(i).contains(expectedUserName)){
@@ -101,6 +106,31 @@ public class UserPage extends TestHelperUtility {
     public UpdateUserPage clickOnEditButton(String userName) throws IOException {
         wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _EditButton);
         List<ArrayList<WebElement>> actionData = table.actionData(rowElement, colElement);
+        if (values == false) {
+        for (int i = 0; i < actionData.size(); i++) {
+            for (int j = 0; j < actionData.get(0).size(); j++) {
+                if (values == false) {
+
+                    WebElement data = actionData.get(i).get(j);
+                    String tData = data.getText();
+
+                    if (tData.contains(userName)) {
+                        page.clickOnElement(editTab);
+                        values = true;
+                    }
+                }
+            }
+
+                }
+            }
+
+        return new UpdateUserPage(driver);
+    }
+
+
+    public DeleteUserPage clickOnDeleteButton(String userName) throws IOException {
+        wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _EditButton);
+        List<ArrayList<WebElement>> actionData = table.actionData(rowElement, colElement);
         for (int i = 0; i < actionData.size(); i++) {
             for (int j = 0; j < actionData.get(0).size(); j++) {
                 WebElement data = actionData.get(i).get(j);
@@ -108,9 +138,9 @@ public class UserPage extends TestHelperUtility {
 
                 if (tData.contains(userName)) {
                     page.clickOnElement(editTab);
-
                 }
             }
         }
-        return new UpdateUserPage(driver);
-    }}
+        return new DeleteUserPage(driver);
+    }
+}

@@ -8,6 +8,8 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UpdateUserTest extends Base {
     LoginPage login;
@@ -47,10 +49,12 @@ public class UpdateUserTest extends Base {
         extentTest.get().log(Status.PASS, "Logout from user page and redirected to login page");
 
     }
-    @Test(priority = 18, enabled = false, description = "TC_017_Verify user can edit the user details")
-    public void verifyUserCanEditTheUserDetails() throws IOException {
+    @Test(priority = 18, enabled = true, description = "TC_018_Verify user can edit the user details")
+    public void verifyUserCanEditTheUserDetails() throws IOException, InterruptedException {
         extentTest.get().assignCategory("Regression");
         login = new LoginPage(driver);
+        userManagement=new UserManagementPage(driver);
+        soft = new SoftAssert();
         login.enterUserName(login.get_UserName());
         extentTest.get().log(Status.PASS, "User name is entered");
         login.enterPassword(login.get_Password());
@@ -59,6 +63,20 @@ public class UpdateUserTest extends Base {
         extentTest.get().log(Status.PASS, "Clicked on login button");
         home.endTour();
         extentTest.get().log(Status.PASS, "Clicked on end tour");
+        userManagement.clickOnUserManagementTab();
+        user = userManagement.clickOnUserTabs();
+        updateUser=user.clickOnEditButton(user.getUserNameToSearch());
+        updateUser.clickOnEmail();
+        updateUser.set_Email(updateUser.get_Email());
+        user= updateUser.clickOnUpdate();
+        List<ArrayList<String>> tableData = user.getTableData();
+        boolean value = user.getTableDataContains(tableData, updateUser.get_Email());
+        soft.assertTrue(value);
+        soft.assertAll();
+        Thread.sleep(6000);
+        sign = home.clickOnUserName();
+        sign.clickOnLogOutButton();
+        extentTest.get().log(Status.PASS, "Clicked on log out");
 
 }
 }

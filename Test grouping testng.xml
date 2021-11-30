@@ -56,6 +56,7 @@
                <include name="verifyUserLoginWithNewlyAddedUser"/>
                <include name="verifyAddedUsePageTitle"/>
                <include name="verifyUserCanAddUserDetails"/>
+               <include name="verifyUserCanEditTheUserDetails"/>
            </methods>
        </class>
     </classes>

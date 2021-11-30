@@ -161,12 +161,14 @@ public class AddUserTest extends Base {
         addUser.enterConfirmPassWord(addUser.get_CPWord());
         extentTest.get().log(Status.PASS, "Confirmation password entered");
         user = addUser.clickOnSaveButton();
+        Thread.sleep(6000);
         extentTest.get().log(Status.PASS, "Clicked on saved button");
         String expectedUserName = addUser.getNewUserName();
         List<ArrayList<String>> tableData = user.getTableData();
         boolean value = user.getTableDataContains(tableData, expectedUserName);
         soft.assertTrue(value);
         soft.assertAll();
+        Thread.sleep(6000);
         sign = home.clickOnUserName();
         sign.clickOnLogOutButton();
         extentTest.get().log(Status.PASS, "Clicked on log out");
