@@ -49,9 +49,14 @@
                <exclude name="verifyTheErrorMessageDisplayedWithoutFillingMandatoryFieldsInAddUserForm"/>
                <exclude name="verifyUserLoginWithNewlyAddedUser"/>
                <exclude name="verifyAddedUsePageTitle"/>
-               <include name="verifyUserCanAddUserDetails"/>
+               <exclude name="verifyUserCanAddUserDetails"/>
            </methods>
        </class>
+        <class name="com.buffalocart.testscripts.UpdateUserTest">
+            <methods>
+                <include name="verifyEditUserPageTitle"/>
+            </methods>
+        </class>
     </classes>
     </test>
 </suite>

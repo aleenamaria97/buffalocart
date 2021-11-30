@@ -3,6 +3,7 @@ package com.buffalocart.pages;
 import com.buffalocart.constants.Constants;
 import com.buffalocart.utilities.TestHelperUtility;
 import com.buffalocart.utilities.WaitUtility;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -87,7 +88,7 @@ public class UserPage extends TestHelperUtility {
         wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _cElement);
         return table.getGridData(rowElement, colElement);
     }
-//
+
     public boolean getTableDataContains(List<ArrayList<String>> tableData, String expectedUserName){
         boolean value = false;
         for(int i=0;i<tableData.size();i++){
@@ -97,16 +98,19 @@ public class UserPage extends TestHelperUtility {
         }
         return value;
     }
-    public List<ArrayList<WebElement>> actionData() {
-        return table.actionData(rowElement, colElement);
+    public UpdateUserPage clickOnEditButton(String userName) throws IOException {
+        wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _EditButton);
+        List<ArrayList<WebElement>> actionData = table.actionData(rowElement, colElement);
+        for (int i = 0; i < actionData.size(); i++) {
+            for (int j = 0; j < actionData.get(0).size(); j++) {
+                WebElement data = actionData.get(i).get(j);
+                String tData=data.getText();
 
-    }
+                if (tData.contains(userName)) {
+                    page.clickOnElement(editTab);
 
-    public String getNewUserDetail(){
-        return readExcelData.get(1);
-    }
-    public UpdateUserPage clickOnEditButton(){
-        page.clickOnElement(editTab);
+                }
+            }
+        }
         return new UpdateUserPage(driver);
-    }
-    }
+    }}

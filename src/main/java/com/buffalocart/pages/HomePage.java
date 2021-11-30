@@ -36,7 +36,8 @@ public class HomePage extends TestHelperUtility {
         return page.getElementText(userName);
     }
     public SignOutPage clickOnUserName(){
-        wait.waitForVisibilityOfElements(driver,WaitUtility.LocatorType.Xpath,_UserName);
+         wait.IMPLICIT_WAIT(10000);
+         wait.waitForVisibilityOfElements(driver,WaitUtility.LocatorType.Xpath,_UserName);
          page.clickOnElement(userName);
          return new SignOutPage(driver);
     }

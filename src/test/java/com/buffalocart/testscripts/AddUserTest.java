@@ -5,8 +5,6 @@ import com.aventstack.extentreports.Status;
 import com.buffalocart.automationcore.Base;
 import com.buffalocart.listener.TestListener;
 import com.buffalocart.pages.*;
-import com.buffalocart.utilities.WaitUtility;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -131,7 +129,6 @@ public class AddUserTest extends Base {
         extentTest.get().assignCategory("Smoke");
         extentTest.get().assignCategory("Sanity");
         extentTest.get().assignCategory("Regression");
-        WaitUtility wait=new WaitUtility();
         login = new LoginPage(driver);
         soft = new SoftAssert();
         userManagement = new UserManagementPage(driver);
@@ -165,7 +162,6 @@ public class AddUserTest extends Base {
         extentTest.get().log(Status.PASS, "Confirmation password entered");
         user = addUser.clickOnSaveButton();
         extentTest.get().log(Status.PASS, "Clicked on saved button");
-        extentTest.get().log(Status.PASS, "Successfully clicked Save button");
         String expectedUserName = addUser.getNewUserName();
         List<ArrayList<String>> tableData = user.getTableData();
         boolean value = user.getTableDataContains(tableData, expectedUserName);
@@ -175,6 +171,4 @@ public class AddUserTest extends Base {
         sign.clickOnLogOutButton();
         extentTest.get().log(Status.PASS, "Clicked on log out");
     }
-
-
 }

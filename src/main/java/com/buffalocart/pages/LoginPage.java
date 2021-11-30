@@ -49,7 +49,7 @@ public class LoginPage extends TestHelperUtility {
         return readExcelData.get(1);
     }
     public void enterUserName(String uName){
-         page.enterText(userName,uName);
+        page.enterText(userName,uName);
     }
     public String get_Password(){
         return readExcelData.get(2);
