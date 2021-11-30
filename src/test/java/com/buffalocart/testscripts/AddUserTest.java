@@ -171,7 +171,6 @@ public class AddUserTest extends Base {
         boolean value = user.getTableDataContains(tableData, expectedUserName);
         soft.assertTrue(value);
         soft.assertAll();
-        wait.IMPLICIT_WAIT(6000);
         sign = home.clickOnUserName();
         sign.clickOnLogOutButton();
         extentTest.get().log(Status.PASS, "Clicked on log out");

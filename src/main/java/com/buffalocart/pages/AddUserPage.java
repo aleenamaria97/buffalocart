@@ -53,12 +53,12 @@ public class AddUserPage extends TestHelperUtility {
     private final String _errMsg = "password-error";
     @FindBy(id = _errMsg)
     private WebElement errorMessage;
-    private static String newUserName;
-    public static String getNewUserName() {
+    private  String newUserName;
+    public  String getNewUserName() {
         return newUserName;
     }
-    public static void setNewUserName(String newUserName) {
-        AddUserPage.newUserName = newUserName;
+    public  void setNewUserName(String newUserName) {
+        this.newUserName = newUserName;
     }
 
     List<String> readData = excel.readDataFromExcel(Constants.EXCEL_FILE_PATH, Constants.EXCEL_SHEET_ADD_USER_PAGE);
