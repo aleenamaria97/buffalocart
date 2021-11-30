@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AddUserPage extends TestHelperUtility {
@@ -46,9 +47,19 @@ public class AddUserPage extends TestHelperUtility {
     private final String _save = "//button[@class='btn btn-primary pull-right']";
     @FindBy(xpath = _save)
     private WebElement saveButton;
-    private final String _erroMsg = "password-error";
-    @FindBy(id = _erroMsg)
+    private final String _toastMessage = "//div[@id='toast-container']";
+    @FindBy(xpath = _toastMessage)
+    WebElement toastMessage;
+    private final String _errMsg = "password-error";
+    @FindBy(id = _errMsg)
     private WebElement errorMessage;
+    private static String newUserName;
+    public static String getNewUserName() {
+        return newUserName;
+    }
+    public static void setNewUserName(String newUserName) {
+        AddUserPage.newUserName = newUserName;
+    }
 
     List<String> readData = excel.readDataFromExcel(Constants.EXCEL_FILE_PATH, Constants.EXCEL_SHEET_ADD_USER_PAGE);
 
@@ -92,6 +103,9 @@ public class AddUserPage extends TestHelperUtility {
     public String get_UserName(){
         return readData.get(8);
     }
+    public String getExpectedUserName(){
+        return readData.get(9);
+    }
     public void enterUserName(String uName){
         page.enterText(userName,uName);
     }
@@ -112,8 +126,10 @@ public class AddUserPage extends TestHelperUtility {
         page.enterText(CpWord, confirmPassWord);
     }
 
-    public void clickOnSaveButton() {
+    public UserPage clickOnSaveButton() throws IOException {
+        page.scrollByJS(driver,saveButton);
         page.clickOnElement(saveButton);
+        return new UserPage(driver);
     }
 
     public String getActualErrorMsg() {
@@ -124,6 +140,7 @@ public class AddUserPage extends TestHelperUtility {
         return readData.get(6);
     }
 
+
     public String getPageTitle() {
         return page.getPageTitle(driver);
     }
@@ -131,6 +148,13 @@ public class AddUserPage extends TestHelperUtility {
     public String getPageExpectedTitle() {
         return readData.get(7);
     }
+    public String getRandomUserName(){
+        setNewUserName(randomString.getUserNameUtility("uname"));
+        return getNewUserName();
+    }
+
+
+
 }
 
 

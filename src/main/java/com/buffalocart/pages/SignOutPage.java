@@ -23,4 +23,8 @@ public class SignOutPage extends TestHelperUtility {
         page.clickOnElement(signOut);
         return new LoginPage(driver);
     }
+    public LoginPage userAccountSignOutUsingJS() throws IOException {
+        page.findElementUsingJavaScript(driver,signOut);
+        return new LoginPage(driver);
+    }
 }

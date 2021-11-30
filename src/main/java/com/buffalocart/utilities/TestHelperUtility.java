@@ -5,4 +5,5 @@ public class TestHelperUtility {
     public ExcelUtility excel = new ExcelUtility();
     public WaitUtility wait=new WaitUtility();
     public RandomStringUtility randomString=new RandomStringUtility();
+    public TableUtility table=new TableUtility();
 }

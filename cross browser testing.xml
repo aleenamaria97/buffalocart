@@ -49,6 +49,7 @@
                <include name="verifyTheErrorMessageDisplayedWithoutFillingMandatoryFieldsInAddUserForm"/>
                <include name="verifyUserLoginWithNewlyAddedUser"/>
                <include name="verifyAddedUsePageTitle"/>
+               <include name="verifyUserCanAddUserDetails"/>
            </methods>
        </class>
     </classes>
@@ -98,6 +99,7 @@
                     <include name="verifyTheErrorMessageDisplayedWithoutFillingMandatoryFieldsInAddUserForm"/>
                     <include name="verifyUserLoginWithNewlyAddedUser"/>
                     <include name="verifyAddedUsePageTitle"/>
+                    <include name="verifyUserCanAddUserDetails"/>
                 </methods>
             </class>
         </classes>
@@ -147,6 +149,7 @@
                     <include name="verifyTheErrorMessageDisplayedWithoutFillingMandatoryFieldsInAddUserForm"/>
                     <include name="verifyUserLoginWithNewlyAddedUser"/>
                     <include name="verifyAddedUsePageTitle"/>
+                    <include name="verifyUserCanAddUserDetails"/>
                 </methods>
             </class>
         </classes>

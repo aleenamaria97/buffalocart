@@ -5,10 +5,14 @@ import com.aventstack.extentreports.Status;
 import com.buffalocart.automationcore.Base;
 import com.buffalocart.listener.TestListener;
 import com.buffalocart.pages.*;
+import com.buffalocart.utilities.WaitUtility;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddUserTest extends Base {
     LoginPage login;
@@ -81,13 +85,13 @@ public class AddUserTest extends Base {
         extentTest.get().log(Status.PASS, "Password entered");
         addUser.enterConfirmPassWord(addUser.get_CPWord());
         extentTest.get().log(Status.PASS, "Confirmation password entered");
-        addUser.clickOnSaveButton();
+        user=addUser.clickOnSaveButton();
         extentTest.get().log(Status.PASS, "Clicked on saved button");
         sign=home.clickOnUserName();
         login=sign.clickOnLogOutButton();
         extentTest.get().log(Status.PASS, "Clicked on log out");
         login.enterUserName(addUser.get_UserName());
-        addUser.enterPassWord(addUser.get_UserName());
+        addUser.enterPassWord(addUser.get_PWord());
         extentTest.get().log(Status.PASS, "New user credentials entered");
         login.clickOnLoginButton();
         String actualTitle= home.getHomePageActualTitle();
@@ -122,6 +126,56 @@ public class AddUserTest extends Base {
         soft.assertAll();
         sign= home.clickOnUserName();
         login=sign.clickOnLogOutButton();}
+    @Test(priority = 16, enabled = true, description = "TC_016_Verify user can add user details")
+    public void verifyUserCanAddUserDetails() throws IOException, InterruptedException {
+        extentTest.get().assignCategory("Smoke");
+        extentTest.get().assignCategory("Sanity");
+        extentTest.get().assignCategory("Regression");
+        WaitUtility wait=new WaitUtility();
+        login = new LoginPage(driver);
+        soft = new SoftAssert();
+        userManagement = new UserManagementPage(driver);
+        login.enterUserName(login.get_UserName());
+        extentTest.get().log(Status.PASS, "User name is entered");
+        login.enterPassword(login.get_Password());
+        extentTest.get().log(Status.PASS, "Password is entered");
+        home = login.clickOnLoginButton();
+        extentTest.get().log(Status.PASS, "Clicked on login button");
+        home.endTour();
+        extentTest.get().log(Status.PASS, "Clicked on end tour");
+        userManagement.clickOnUserManagementTab();
+        user = userManagement.clickOnUserTabs();
+        extentTest.get().log(Status.PASS, "clicked on user tab and redirected to user page");
+        addUser = user.clickAddUserTab();
+        addUser.enterPrefix(addUser.get_prefix());
+        extentTest.get().log(Status.PASS, "prefix entered");
+        addUser.enterFirstName(addUser.get_FirstName());
+        extentTest.get().log(Status.PASS, "first name entered");
+        addUser.enterLastName(addUser.get_LastName());
+        extentTest.get().log(Status.PASS, "last name entered");
+        addUser.enterId(addUser.get_Id());
+        extentTest.get().log(Status.PASS, "Email entered");
+        addUser.selectRole();
+        extentTest.get().log(Status.PASS, "Selected Role");
+        addUser.enterUserName(addUser.getRandomUserName());
+        extentTest.get().log(Status.PASS, "User Name entered");
+        addUser.enterPassWord(addUser.get_PWord());
+        extentTest.get().log(Status.PASS, "Password entered");
+        addUser.enterConfirmPassWord(addUser.get_CPWord());
+        extentTest.get().log(Status.PASS, "Confirmation password entered");
+        user = addUser.clickOnSaveButton();
+        extentTest.get().log(Status.PASS, "Clicked on saved button");
+        extentTest.get().log(Status.PASS, "Successfully clicked Save button");
+        String expectedUserName = addUser.getNewUserName();
+        List<ArrayList<String>> tableData = user.getTableData();
+        boolean value = user.getTableDataContains(tableData, expectedUserName);
+        soft.assertTrue(value);
+        soft.assertAll();
+        wait.IMPLICIT_WAIT(6000);
+        sign = home.clickOnUserName();
+        sign.clickOnLogOutButton();
+        extentTest.get().log(Status.PASS, "Clicked on log out");
+    }
 
 
 }

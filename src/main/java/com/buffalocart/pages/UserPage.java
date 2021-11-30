@@ -3,7 +3,6 @@ package com.buffalocart.pages;
 import com.buffalocart.constants.Constants;
 import com.buffalocart.utilities.TestHelperUtility;
 import com.buffalocart.utilities.WaitUtility;
-import org.checkerframework.checker.units.qual.A;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -33,6 +32,17 @@ public class UserPage extends TestHelperUtility {
     public final String _addUserTab="//div[@class='box-tools']";
     @FindBy(xpath = _addUserTab)
     private WebElement addUsertab;
+    public final String _EditButton="//a[@class='btn btn-xs btn-primary']";
+    @FindBy(xpath = _EditButton)
+    private WebElement editTab;
+    private final String _rElement = "//table[@id='users_table']//tbody//tr";
+    @FindBy(xpath = _rElement)
+    private List<WebElement> rowElement;
+
+    private final String _cElement = "//table[@id='users_table']//tbody//tr//td";
+    @FindBy(xpath = _cElement)
+    private List<WebElement> colElement;
+
 
     List<String> readExcelData = excel.readDataFromExcel(Constants.EXCEL_FILE_PATH, Constants.EXCEL_SHEET_USER_PAGE);
     public String getUserActualPageTitle(){
@@ -73,4 +83,30 @@ public class UserPage extends TestHelperUtility {
         page.clickOnElement(addUsertab);
        return new AddUserPage(driver);
     }
-}
+    public List<ArrayList<String>> getTableData() {
+        wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _cElement);
+        return table.getGridData(rowElement, colElement);
+    }
+//
+    public boolean getTableDataContains(List<ArrayList<String>> tableData, String expectedUserName){
+        boolean value = false;
+        for(int i=0;i<tableData.size();i++){
+            if(tableData.get(i).contains(expectedUserName)){
+                value= true;
+            }
+        }
+        return value;
+    }
+    public List<ArrayList<WebElement>> actionData() {
+        return table.actionData(rowElement, colElement);
+
+    }
+
+    public String getNewUserDetail(){
+        return readExcelData.get(1);
+    }
+    public UpdateUserPage clickOnEditButton(){
+        page.clickOnElement(editTab);
+        return new UpdateUserPage(driver);
+    }
+    }

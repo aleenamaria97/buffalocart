@@ -11,6 +11,10 @@ public class WaitUtility {
     public static final long PAGE_LOAD_WAIT=20;
     public static final long EXPLICIT_WAIT=20;
     public static final long IMPLICIT_WAIT=20;
+
+    public  void IMPLICIT_WAIT(int i) {
+    }
+
     public enum LocatorType{
         Id,Xpath,CssSelector,Name,TagName,LinkText,partialLinkText,ClassName;
     }

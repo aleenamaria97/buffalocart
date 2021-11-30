@@ -3,6 +3,7 @@ package com.buffalocart.pages;
 import com.buffalocart.constants.Constants;
 import com.buffalocart.utilities.TestHelperUtility;
 import com.buffalocart.utilities.WaitUtility;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,10 +36,11 @@ public class HomePage extends TestHelperUtility {
         return page.getElementText(userName);
     }
     public SignOutPage clickOnUserName(){
+        wait.waitForVisibilityOfElements(driver,WaitUtility.LocatorType.Xpath,_UserName);
          page.clickOnElement(userName);
          return new SignOutPage(driver);
     }
-    List<String> readExcelData = excel.readDataFromExcel(Constants.EXCEL_FILE_PATH, Constants.EXCEL_SHEET_HOME_PAGE);
+        List<String> readExcelData = excel.readDataFromExcel(Constants.EXCEL_FILE_PATH, Constants.EXCEL_SHEET_HOME_PAGE);
     public String getHomePageActualTitle(){
         return page.getPageTitle(driver);
     }
