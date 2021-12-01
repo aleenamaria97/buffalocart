@@ -47,7 +47,7 @@ public class AddRolesTest extends Base {
         soft.assertAll();
 
     }
-    @Test(priority = 23, enabled = true, description = "TC_015_Verify  user can add roles ")
+    @Test(priority = 23, enabled = false, description = "TC_023_Verify  user can add roles ")
     public void verifyUserCanAddRoles() throws IOException {
         extentTest.get().assignCategory("Regression");
         login = new LoginPage(driver);

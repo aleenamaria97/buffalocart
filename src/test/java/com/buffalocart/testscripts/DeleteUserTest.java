@@ -9,6 +9,8 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DeleteUserTest extends Base {
     LoginPage login;
@@ -23,7 +25,7 @@ public class DeleteUserTest extends Base {
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
 
     @Test(priority = 19, enabled = true, description = "TC_019_Verify user can delete a user")
-    public void verifyUserCanDeleteAUser() throws IOException {
+    public void verifyUserCanDeleteAUser() throws IOException, InterruptedException {
         extentTest.get().assignCategory("Regression");
         login = new LoginPage(driver);
         soft = new SoftAssert();
@@ -41,8 +43,15 @@ public class DeleteUserTest extends Base {
         user = userManagement.clickOnUserTabs();
         delete=user.clickOnDeleteButton(delete.get_UserNameToDelete());
         delete.clickOnDeleteOk();
-        String userNameToDelete= delete.get_UserNameToDelete();
-        //soft.assertFalse();
+        Thread.sleep(6000);
+        List<ArrayList<String>> tableData = user.getTableData();
+        boolean value =user.getTableDataContains(tableData, delete.get_UserNameToDelete());
+        soft.assertFalse(value,"ERROR : User Deletion Unsuccessful");
+
+        sign = home.clickOnUserName();
+        sign.clickOnLogOutButton();
+        extentTest.get().log(Status.PASS, "Successfully Signed Out");
+        soft.assertAll();
 
 
     }

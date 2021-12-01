@@ -38,8 +38,23 @@ public class ViewUserTest extends Base {
         home.endTour();
         extentTest.get().log(Status.PASS, "Clicked on end tour");
         userManagement.clickOnUserManagementTab();
+        extentTest.get().log(Status.PASS, "Clicked on user management tab");
         user = userManagement.clickOnUserTabs();
         view=user.clickOnViewButton(view.get_UserNameToView());
+        extentTest.get().log(Status.PASS, "Clicked on view button");
+        String actualUserName= view.getViewUserName();
+        extentTest.get().log(Status.PASS, "Actual user name generated");
+        String expectedUserName= view.getViewUserExpectedName();
+        extentTest.get().log(Status.PASS, "expected user name generated");
+        soft.assertEquals(actualUserName,expectedUserName);
+        sign = home.clickOnUserName();
+        login = sign.clickOnLogOutButton();
+        extentTest.get().log(Status.PASS, "signout from the page");
+        extentTest.get().log(Status.PASS, "Logout from user page and redirected to login page");
+        soft.assertAll();
+
+
+
 
     }
 

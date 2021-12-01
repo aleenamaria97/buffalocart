@@ -55,27 +55,27 @@
         <class name="com.buffalocart.testscripts.UpdateUserTest">
             <methods>
                 <exclude name="verifyEditUserPageTitle"/>
-                <include name="verifyUserCanEditTheUserDetails"/>
+                <exclude name="verifyUserCanEditTheUserDetails"/>
             </methods>
         </class>
         <class name="com.buffalocart.testscripts.DeleteUserTest">
             <methods>
-                <exclude name="verifyUserCanDeleteAUser"/>
+                <include name="verifyUserCanDeleteAUser"/>
             </methods>
         </class>
         <class name="com.buffalocart.testscripts.ViewUserTest">
             <methods>
-                <exclude name="verifyUserTheDetailsDisplayedOnViewUserPage"/>
+                <include name="verifyUserTheDetailsDisplayedOnViewUserPage"/>
             </methods>
         </class>
         <class name="com.buffalocart.testscripts.RolesTest">
             <methods>
-                <exclude name="verifyRolesPageTitle"/>
+                <include name="verifyRolesPageTitle"/>
             </methods>
         </class>
         <class name="com.buffalocart.testscripts.AddRolesTest">
             <methods>
-                <exclude name="verifyAddRolesPageTitle"/>
+                <include name="verifyAddRolesPageTitle"/>
             </methods>
         </class>
     </classes>

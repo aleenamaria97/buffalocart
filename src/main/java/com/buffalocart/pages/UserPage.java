@@ -3,6 +3,7 @@ package com.buffalocart.pages;
 import com.buffalocart.constants.Constants;
 import com.buffalocart.utilities.TestHelperUtility;
 import com.buffalocart.utilities.WaitUtility;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -106,19 +107,23 @@ public class UserPage extends TestHelperUtility {
         return value;
     }
     public UpdateUserPage clickOnEditButton(String userName) throws IOException {
+        wait.IMPLICIT_WAIT(6000);
         wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _EditButton);
         List<ArrayList<WebElement>> actionData = table.actionData(rowElement, colElement);
         if (values == false) {
         for (int i = 0; i < actionData.size(); i++) {
             for (int j = 0; j < actionData.get(0).size(); j++) {
+                WebElement data = actionData.get(i).get(j);
                 if (values == false) {
 
-                    WebElement data = actionData.get(i).get(j);
                     String tData = data.getText();
 
                     if (tData.contains(userName)) {
+                        editButton = driver.findElement(
+                                By.xpath("//table[@id='users_table']//tbody//tr[" + (i + 1) + "]//td[5]//a[1]"));
                         page.clickOnElement(editButton);
                         values = true;
+                        break;
                     }
                 }
             }
@@ -133,40 +138,45 @@ public class UserPage extends TestHelperUtility {
     public DeleteUserPage clickOnDeleteButton(String userName) throws IOException {
         wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _DeleteButton);
         List<ArrayList<WebElement>> actionData = table.actionData(rowElement, colElement);
-        if (values == false) {
+        if (values == false)
             for (int i = 0; i < actionData.size(); i++) {
                 for (int j = 0; j < actionData.get(0).size(); j++) {
+                    WebElement data = actionData.get(i).get(j);
                     if (values == false) {
-
-                        WebElement data = actionData.get(i).get(j);
                         String tData = data.getText();
-
-                        if (tData.equals(userName)) {
+                        if (tData.contains(userName)) {
+                            deleteButton = driver.findElement(
+                                    By.xpath(("//table[@id='users_table']//tbody//tr[" + (i + 1) + "]//td[5]//button")));
                             page.clickOnElement(deleteButton);
                             values = true;
+                            break;
                         }
                     }
                 }
 
             }
-        }
 
-        return new DeleteUserPage(driver);
-    }
+            return new DeleteUserPage(driver);
+        }
+    
+
     public ViewUserPage clickOnViewButton(String userName) throws IOException {
         wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _ViewUserButton);
         List<ArrayList<WebElement>> actionData = table.actionData(rowElement, colElement);
         if (values == false) {
             for (int i = 0; i < actionData.size(); i++) {
                 for (int j = 0; j < actionData.get(0).size(); j++) {
+                    WebElement data = actionData.get(i).get(j);
                     if (values == false) {
 
-                        WebElement data = actionData.get(i).get(j);
                         String tData = data.getText();
 
-                        if (tData.equals(userName)) {
+                        if (tData.contains(userName)) {
+                            viewUserButton= driver.findElement(
+                                    By.xpath("//table[@id='users_table']//tbody//tr[" + (i + 1) + "]//td[5]//a[2]"));
                             page.clickOnElement(viewUserButton);
                             values = true;
+                            break;
                         }
                     }
                 }
