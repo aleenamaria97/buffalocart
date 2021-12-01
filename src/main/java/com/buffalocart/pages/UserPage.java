@@ -3,7 +3,6 @@ package com.buffalocart.pages;
 import com.buffalocart.constants.Constants;
 import com.buffalocart.utilities.TestHelperUtility;
 import com.buffalocart.utilities.WaitUtility;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,16 +34,19 @@ public class UserPage extends TestHelperUtility {
     private WebElement addUsertab;
     public final String _EditButton="//a[@class='btn btn-xs btn-primary']";
     @FindBy(xpath = _EditButton)
-    private WebElement editTab;
+    private WebElement editButton;
     private final String _rElement = "//table[@id='users_table']//tbody//tr";
     @FindBy(xpath = _rElement)
     private List<WebElement> rowElement;
     private final String _cElement = "//table[@id='users_table']//tbody//tr//td";
     @FindBy(xpath = _cElement)
     private List<WebElement> colElement;
-    public final String _DeleteButton="//a[@class='btn btn-xs btn-primary']";
+    public final String _DeleteButton="//button[@class='btn btn-xs btn-danger delete_user_button']";
     @FindBy(xpath = _DeleteButton)
-    private WebElement deleteTab;
+    private WebElement deleteButton;
+    public final String _ViewUserButton="//a[@class='btn btn-xs btn-info']";
+    @FindBy(xpath = _ViewUserButton)
+    private WebElement viewUserButton;
     boolean values;
 
 
@@ -115,7 +117,7 @@ public class UserPage extends TestHelperUtility {
                     String tData = data.getText();
 
                     if (tData.contains(userName)) {
-                        page.clickOnElement(editTab);
+                        page.clickOnElement(editButton);
                         values = true;
                     }
                 }
@@ -129,18 +131,49 @@ public class UserPage extends TestHelperUtility {
 
 
     public DeleteUserPage clickOnDeleteButton(String userName) throws IOException {
-        wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _EditButton);
+        wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _DeleteButton);
         List<ArrayList<WebElement>> actionData = table.actionData(rowElement, colElement);
-        for (int i = 0; i < actionData.size(); i++) {
-            for (int j = 0; j < actionData.get(0).size(); j++) {
-                WebElement data = actionData.get(i).get(j);
-                String tData=data.getText();
+        if (values == false) {
+            for (int i = 0; i < actionData.size(); i++) {
+                for (int j = 0; j < actionData.get(0).size(); j++) {
+                    if (values == false) {
 
-                if (tData.contains(userName)) {
-                    page.clickOnElement(editTab);
+                        WebElement data = actionData.get(i).get(j);
+                        String tData = data.getText();
+
+                        if (tData.equals(userName)) {
+                            page.clickOnElement(deleteButton);
+                            values = true;
+                        }
+                    }
                 }
+
             }
         }
+
         return new DeleteUserPage(driver);
+    }
+    public ViewUserPage clickOnViewButton(String userName) throws IOException {
+        wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _ViewUserButton);
+        List<ArrayList<WebElement>> actionData = table.actionData(rowElement, colElement);
+        if (values == false) {
+            for (int i = 0; i < actionData.size(); i++) {
+                for (int j = 0; j < actionData.get(0).size(); j++) {
+                    if (values == false) {
+
+                        WebElement data = actionData.get(i).get(j);
+                        String tData = data.getText();
+
+                        if (tData.equals(userName)) {
+                            page.clickOnElement(viewUserButton);
+                            values = true;
+                        }
+                    }
+                }
+
+            }
+        }
+
+        return new ViewUserPage(driver);
     }
 }

@@ -10,25 +10,20 @@ import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
 
-public class DeleteUserTest extends Base {
+public class RolesTest extends Base {
     LoginPage login;
     HomePage home;
-    UserPage user;
-    AddUserPage addUser;
-    UpdateUserPage updateUser;
     UserManagementPage userManagement;
-    SoftAssert soft;
+    RolesPage role;
     SignOutPage sign;
-    DeleteUserPage delete;
+    SoftAssert soft;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
-
-    @Test(priority = 19, enabled = true, description = "TC_019_Verify user can delete a user")
-    public void verifyUserCanDeleteAUser() throws IOException {
+    @Test(priority = 21, enabled = true, description = "TC_021_Verify Roles page title")
+    public void verifyRolesPageTitle() throws IOException {
         extentTest.get().assignCategory("Regression");
         login = new LoginPage(driver);
-        soft = new SoftAssert();
         userManagement = new UserManagementPage(driver);
-        delete=new DeleteUserPage(driver);
+        soft=new SoftAssert();
         login.enterUserName(login.get_UserName());
         extentTest.get().log(Status.PASS, "User name is entered");
         login.enterPassword(login.get_Password());
@@ -38,12 +33,16 @@ public class DeleteUserTest extends Base {
         home.endTour();
         extentTest.get().log(Status.PASS, "Clicked on end tour");
         userManagement.clickOnUserManagementTab();
-        user = userManagement.clickOnUserTabs();
-        delete=user.clickOnDeleteButton(delete.get_UserNameToDelete());
-        delete.clickOnDeleteOk();
-        String userNameToDelete= delete.get_UserNameToDelete();
-        //soft.assertFalse();
-
-
+        role = userManagement.clickOnRolesTabs();
+        extentTest.get().log(Status.PASS, "clicked on user tab and redirected to user page");
+        String actualTitle = role.getUserActualPageTitle();
+        extentTest.get().log(Status.PASS, "Actual roles page title generated");
+        String expectedTitle = role.getUserPageExpectedTitle();
+        extentTest.get().log(Status.PASS, "Expected roles page title generated");
+        soft.assertEquals(actualTitle, expectedTitle, "Error:invalidUserPageTitle");
+        sign = home.clickOnUserName();
+        login = sign.clickOnLogOutButton();
+        extentTest.get().log(Status.PASS, "Logout from user page and redirected to login page");
+        soft.assertAll();
     }
 }

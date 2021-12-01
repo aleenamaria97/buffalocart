@@ -41,10 +41,10 @@ public class UserTest extends Base {
         String expectedTitle = user.getUserPageExpectedTitle();
         extentTest.get().log(Status.PASS, "Expected user page title generated");
         soft.assertEquals(actualTitle, expectedTitle, "Error:invalidUserPageTitle");
-        soft.assertAll();
         sign = home.clickOnUserName();
         login = sign.clickOnLogOutButton();
         extentTest.get().log(Status.PASS, "Logout from user page and redirected to login page");
+        soft.assertAll();
     }
 
     @Test(priority = 11, enabled = true, description = "TC_011_Verify user search with valid data")
@@ -70,10 +70,10 @@ public class UserTest extends Base {
         String actualUserData = user.getActualUserIdAfterSearch();
         String expectedUserData = user.getUserNameToSearch();
         soft.assertEquals(actualUserData, expectedUserData, "Error:No user founded");
-        soft.assertAll();
         sign = home.clickOnUserName();
         login = sign.clickOnLogOutButton();
         extentTest.get().log(Status.PASS, "Logout from user page and redirected to login page");
+        soft.assertAll();
     }
 
     @Test(priority = 12, enabled = true, description = "TC_012_Verify message displayed by  user search with invalid data")
@@ -99,10 +99,10 @@ public class UserTest extends Base {
         String actualMsg = user.getNoUserFoundActualMsg();
         String expectedMsg = user.getNoUserFoundExpectedMsg();
         soft.assertEquals(actualMsg, expectedMsg, "Error:User with matched records founded");
-        soft.assertAll();
         sign = home.clickOnUserName();
         login = sign.clickOnLogOutButton();
         extentTest.get().log(Status.PASS, "Logout from user page and redirected to login page");
+        soft.assertAll();
     }
 
 

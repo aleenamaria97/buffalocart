@@ -10,7 +10,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
 
-public class DeleteUserTest extends Base {
+public class ViewUserTest extends Base {
     LoginPage login;
     HomePage home;
     UserPage user;
@@ -19,16 +19,16 @@ public class DeleteUserTest extends Base {
     UserManagementPage userManagement;
     SoftAssert soft;
     SignOutPage sign;
-    DeleteUserPage delete;
+    ViewUserPage view;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
 
-    @Test(priority = 19, enabled = true, description = "TC_019_Verify user can delete a user")
-    public void verifyUserCanDeleteAUser() throws IOException {
+    @Test(priority = 20, enabled = true, description = "TC_020_Verify  the details displayed on view user page")
+    public void verifyUserTheDetailsDisplayedOnViewUserPage() throws IOException {
         extentTest.get().assignCategory("Regression");
         login = new LoginPage(driver);
         soft = new SoftAssert();
         userManagement = new UserManagementPage(driver);
-        delete=new DeleteUserPage(driver);
+        view=new ViewUserPage(driver);
         login.enterUserName(login.get_UserName());
         extentTest.get().log(Status.PASS, "User name is entered");
         login.enterPassword(login.get_Password());
@@ -39,11 +39,8 @@ public class DeleteUserTest extends Base {
         extentTest.get().log(Status.PASS, "Clicked on end tour");
         userManagement.clickOnUserManagementTab();
         user = userManagement.clickOnUserTabs();
-        delete=user.clickOnDeleteButton(delete.get_UserNameToDelete());
-        delete.clickOnDeleteOk();
-        String userNameToDelete= delete.get_UserNameToDelete();
-        //soft.assertFalse();
-
+        view=user.clickOnViewButton(view.get_UserNameToView());
 
     }
+
 }

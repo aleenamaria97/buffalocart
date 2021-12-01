@@ -40,9 +40,9 @@ public class UserManagementTest extends Base {
         extentTest.get().log(Status.PASS, "Actual tab list generated");
         SoftAssert soft=new SoftAssert();
         soft.assertEquals(actualTabs,expectedTabs,"Error:user management tabs not founded");
-        soft.assertAll();
         sign= home.clickOnUserName();
         login= sign.clickOnLogOutButton();
         extentTest.get().log(Status.PASS, "Logout from user page and redirected to login page");
+        soft.assertAll();
     }
 }

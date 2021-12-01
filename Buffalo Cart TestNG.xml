@@ -63,6 +63,21 @@
                 <exclude name="verifyUserCanDeleteAUser"/>
             </methods>
         </class>
+        <class name="com.buffalocart.testscripts.ViewUserTest">
+            <methods>
+                <exclude name="verifyUserTheDetailsDisplayedOnViewUserPage"/>
+            </methods>
+        </class>
+        <class name="com.buffalocart.testscripts.RolesTest">
+            <methods>
+                <exclude name="verifyRolesPageTitle"/>
+            </methods>
+        </class>
+        <class name="com.buffalocart.testscripts.AddRolesTest">
+            <methods>
+                <exclude name="verifyAddRolesPageTitle"/>
+            </methods>
+        </class>
     </classes>
     </test>
 </suite>

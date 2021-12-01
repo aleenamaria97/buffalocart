@@ -27,6 +27,9 @@ public class UserManagementPage extends TestHelperUtility {
     private final String _userTab = "//ul[@class='treeview-menu menu-open']//i[@class='fa fa-user']";
     @FindBy(xpath = _userTab)
     private WebElement userTab;
+    private final String _rolesTab = "//ul[@class='treeview-menu menu-open']//i[@class='fa fa-briefcase']";
+    @FindBy(xpath = _rolesTab)
+    private WebElement rolesTab;
     public void clickOnUserManagementTab(){
         page.clickOnElement(userManagementTab);
 
@@ -52,6 +55,11 @@ public class UserManagementPage extends TestHelperUtility {
         wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _userTab);
         page.clickOnElement(userTab);
         return new UserPage(driver);
+    }
+    public RolesPage clickOnRolesTabs() throws IOException {
+        wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _rolesTab);
+        page.clickOnElement(rolesTab);
+        return new RolesPage(driver);
     }
 
 

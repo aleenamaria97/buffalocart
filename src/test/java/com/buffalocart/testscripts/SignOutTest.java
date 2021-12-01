@@ -38,6 +38,7 @@ public class SignOutTest extends Base {
         SoftAssert soft=new SoftAssert();
         soft.assertEquals(actualTitle,expectedTitle,"Error:Navigation to login page failed");
         extentTest.get().log(Status.PASS, "User is successfully navigated to LoginPage");
+        soft.assertAll();
     }
 
 

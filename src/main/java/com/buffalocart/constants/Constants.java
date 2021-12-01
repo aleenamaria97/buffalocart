@@ -10,4 +10,8 @@ public class Constants {
     public static final String EXCEL_SHEET_USER_PAGE="User";
     public static final String EXCEL_SHEET_ADD_USER_PAGE="AddUser";
     public static final String EXCEL_SHEET_UPDATE_USER_PAGE="UpdateUserPage";
+    public static final String EXCEL_SHEET_DELETE_USER_PAGE="DeleteUser";
+    public static final String EXCEL_SHEET_VIEW_USER_PAGE="ViewUser";
+    public static final String EXCEL_SHEET_ROLES_PAGE="Roles";
+    public static final String EXCEL_SHEET_ADD_ROLES_PAGE="AddRoles";
 }

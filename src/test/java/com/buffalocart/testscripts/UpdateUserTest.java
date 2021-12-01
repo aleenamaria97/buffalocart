@@ -39,14 +39,17 @@ public class UpdateUserTest extends Base {
         extentTest.get().log(Status.PASS, "Clicked on end tour");
         userManagement.clickOnUserManagementTab();
         user = userManagement.clickOnUserTabs();
+        extentTest.get().log(Status.PASS, "Clicked on users tab");
         updateUser=user.clickOnEditButton(user.getUserNameToSearch());
+        extentTest.get().log(Status.PASS, "Clicked on edit button");
         String actualTitle= updateUser.getEditUserPageTitle();
+        extentTest.get().log(Status.PASS, "Get actual page title");
         String expectedTitle=updateUser.getEditUserPageExpectedTitle();
         soft.assertEquals(actualTitle, expectedTitle, "Error:No user founded");
-        soft.assertAll();
         sign = home.clickOnUserName();
         login = sign.clickOnLogOutButton();
         extentTest.get().log(Status.PASS, "Logout from user page and redirected to login page");
+        soft.assertAll();
 
     }
     @Test(priority = 18, enabled = true, description = "TC_018_Verify user can edit the user details")
@@ -64,19 +67,23 @@ public class UpdateUserTest extends Base {
         home.endTour();
         extentTest.get().log(Status.PASS, "Clicked on end tour");
         userManagement.clickOnUserManagementTab();
+        extentTest.get().log(Status.PASS, "Clicked on user management tab");
         user = userManagement.clickOnUserTabs();
         updateUser=user.clickOnEditButton(user.getUserNameToSearch());
+        extentTest.get().log(Status.PASS, "Clicked on edit button");
         updateUser.clickOnEmail();
         updateUser.set_Email(updateUser.get_Email());
+        extentTest.get().log(Status.PASS, "email is edited");
         user= updateUser.clickOnUpdate();
+        extentTest.get().log(Status.PASS, "updated the changes");
         List<ArrayList<String>> tableData = user.getTableData();
         boolean value = user.getTableDataContains(tableData, updateUser.get_Email());
         soft.assertTrue(value);
-        soft.assertAll();
         Thread.sleep(6000);
         sign = home.clickOnUserName();
         sign.clickOnLogOutButton();
         extentTest.get().log(Status.PASS, "Clicked on log out");
+        soft.assertAll();
 
 }
 }

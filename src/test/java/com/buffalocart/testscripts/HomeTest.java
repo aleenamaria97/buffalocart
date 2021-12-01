@@ -34,10 +34,10 @@ public class HomeTest extends Base {
         String expectedTitle= home.getHomePageExpectedTitle();
         SoftAssert soft=new SoftAssert();
         soft.assertEquals(actualTitle,expectedTitle,"Error:Title Miss match");
-        soft.assertAll();
         sign= home.clickOnUserName();
         login=sign.clickOnLogOutButton();
         extentTest.get().log(Status.PASS, "Verify home page title test passed");
+        soft.assertAll();
     }
     @Test(priority = 7, enabled = true, description = "TC_007_Verify date displayed in home page ")
     public void verifyDateDisplayedInHomePage() throws IOException {
@@ -57,10 +57,10 @@ public class HomeTest extends Base {
         extentTest.get().log(Status.PASS, "actual date generated");
         SoftAssert soft=new SoftAssert();
         soft.assertEquals(actualDate,expectedDate,"Error:Date is mismatched");
-        soft.assertAll();
         sign= home.clickOnUserName();
         login=sign.clickOnLogOutButton();
         extentTest.get().log(Status.PASS, "verify Date Displayed In HomePage Test Passed");
+        soft.assertAll();
     }
 
 }
