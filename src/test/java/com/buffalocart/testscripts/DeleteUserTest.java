@@ -47,12 +47,9 @@ public class DeleteUserTest extends Base {
         List<ArrayList<String>> tableData = user.getTableData();
         boolean value =user.getTableDataContains(tableData, delete.get_UserNameToDelete());
         soft.assertFalse(value,"ERROR : User Deletion Unsuccessful");
-
         sign = home.clickOnUserName();
         sign.clickOnLogOutButton();
         extentTest.get().log(Status.PASS, "Successfully Signed Out");
         soft.assertAll();
-
-
     }
 }

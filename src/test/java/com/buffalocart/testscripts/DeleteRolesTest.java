@@ -9,21 +9,25 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class RolesTest extends Base {
+public class DeleteRolesTest extends Base {
     LoginPage login;
     HomePage home;
-    UserManagementPage userManagement;
-    RolesPage role;
     SignOutPage sign;
+    UserManagementPage userManagement;
     SoftAssert soft;
+    RolesPage role;
+    DeleteRolesPage delete;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
-    @Test(priority = 21, enabled = true, description = "TC_021_Verify Roles page title")
-    public void verifyRolesPageTitle() throws IOException {
+
+    @Test(priority = 26, enabled = true, description = "TC_026_Verify user can delete a role from the list")
+    public void verifyUserCanDeleteRole() throws IOException, InterruptedException {
         extentTest.get().assignCategory("Regression");
         login = new LoginPage(driver);
+        soft = new SoftAssert();
         userManagement = new UserManagementPage(driver);
-        soft=new SoftAssert();
         login.enterUserName(login.get_UserName());
         extentTest.get().log(Status.PASS, "User name is entered");
         login.enterPassword(login.get_Password());
@@ -34,16 +38,15 @@ public class RolesTest extends Base {
         extentTest.get().log(Status.PASS, "Clicked on end tour");
         userManagement.clickOnUserManagementTab();
         role = userManagement.clickOnRolesTabs();
-        extentTest.get().log(Status.PASS, "clicked on user tab and redirected to roles page");
-        String actualTitle = role.getUserActualPageTitle();
-        extentTest.get().log(Status.PASS, "Actual roles page title generated");
-        String expectedTitle = role.getUserPageExpectedTitle();
-        extentTest.get().log(Status.PASS, "Expected roles page title generated");
-        soft.assertEquals(actualTitle, expectedTitle, "Error:invalidUserPageTitle");
+        delete=role.clickOnDeleteButton(delete.get_UserNameToDelete());
+        delete.clickOnDeleteOk();
+        Thread.sleep(6000);
+        List<ArrayList<String>> tableData = role.getTableData();
+        boolean value =role.getTableDataContains(tableData, delete.get_UserNameToDelete());
+        soft.assertFalse(value,"ERROR : User Deletion Unsuccessful");
         sign = home.clickOnUserName();
-        login = sign.clickOnLogOutButton();
-        extentTest.get().log(Status.PASS, "Logout from user page and redirected to login page");
+        sign.clickOnLogOutButton();
+        extentTest.get().log(Status.PASS, "Successfully Signed Out");
         soft.assertAll();
     }
-
 }
