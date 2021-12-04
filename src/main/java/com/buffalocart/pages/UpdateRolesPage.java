@@ -16,9 +16,9 @@ public class UpdateRolesPage extends TestHelperUtility {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-    public final String _selectUser="//div[@class='icheckbox_square-blue hover']";
-    @FindBy(xpath = _selectUser)
-    private WebElement selectUser;
+    public final String _selectRoles="//form[@id='role_form']/div[3]/div[2]/div/label";
+    @FindBy(xpath = _selectRoles)
+    private WebElement selectRoles;
     public final String _UpdateButton="//button[@class='btn btn-primary pull-right']";
     @FindBy(xpath = _UpdateButton)
     private WebElement updateButton;
@@ -32,10 +32,10 @@ public class UpdateRolesPage extends TestHelperUtility {
         return readExcelData.get(0);
     }
     public void selectAllRoles(){
-        page.clickOnElement(selectUser);
+        page.clickOnElement(selectRoles);
     }
     public boolean isElementIsSelected(){
-        return page.isElementSelected(selectUser);
+        return page.isElementSelected(selectRoles);
     }
     public RolesPage clickOnUpdateButton() throws IOException {
         page.scrollByJS(driver,updateButton);

@@ -88,7 +88,7 @@ public class RolesPage extends TestHelperUtility {
 
                         if (tData.contains(userName)) {
                             editButton = driver.findElement(
-                                    By.xpath("//table[@id='roles_table']//tbody//tr[\" + (i + 1) + \"]//td[2]//a[1]"));
+                                    By.xpath("//table[@id='roles_table']//tbody//tr[" + (i + 1) +"]//td[2]//a[1]"));
                             page.clickOnElement(editButton);
                             values = true;
                             break;
@@ -101,7 +101,7 @@ public class RolesPage extends TestHelperUtility {
 
         return new UpdateRolesPage(driver);
     }
-    public DeleteRolesPage clickOnDeleteButton(String userName) throws IOException {
+    public DeleteRolesPage clickOnDeleteButton(String role) throws IOException {
         wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _DeleteButton);
         List<ArrayList<WebElement>> actionData = table.actionData(rowElement, colElement);
         if (values == false)
@@ -110,9 +110,9 @@ public class RolesPage extends TestHelperUtility {
                     WebElement data = actionData.get(i).get(j);
                     if (values == false) {
                         String tData = data.getText();
-                        if (tData.contains(userName)) {
+                        if (tData.contains(role)) {
                             deleteButton = driver.findElement(
-                                    By.xpath(("//table[@id='roles_table']//tbody//tr[\" + (i + 1) + \"]//td[2]//button")));
+                                    By.xpath(("//table[@id='roles_table']//tbody//tr[" + (i + 1) + "]//td[2]//button")));
                             page.clickOnElement(deleteButton);
                             values = true;
                             break;
@@ -124,6 +124,7 @@ public class RolesPage extends TestHelperUtility {
 
         return new DeleteRolesPage(driver);
     }
+
     public List<ArrayList<String>> getTableData() {
         wait.IMPLICIT_WAIT(6000);
         wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _cElement);

@@ -87,7 +87,7 @@
         </class>
         <class name="com.buffalocart.testscripts.DeleteRolesTest">
             <methods>
-                <include name="verifyUserCanDeleteRole"/>
+                <exclude name="verifyUserCanDeleteRole"/>
             </methods>
         </class>
     </classes>

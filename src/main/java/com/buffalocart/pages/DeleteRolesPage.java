@@ -23,12 +23,15 @@ public class DeleteRolesPage extends TestHelperUtility {
     public final String _DeletePopUp="//button[@class='swal-button swal-button--confirm swal-button--danger']";
     @FindBy(xpath = _DeletePopUp)
     private WebElement deletePopUp;
-    List<String> readExcelData = excel.readDataFromExcel(Constants.EXCEL_FILE_PATH, Constants.EXCEL_SHEET_DELETE_USER_PAGE);
-    public String get_UserNameToDelete(){
+    List<String> readExcelData = excel.readDataFromExcel(Constants.EXCEL_FILE_PATH, Constants.EXCEL_SHEET_DELETE_ROLES_PAGE);
+    public String get_RolesToDelete(){
         return readExcelData.get(0);
     }
-    public void clickOnDeleteOk(){
+
+    public RolesPage clickOnDeleteOk() throws IOException {
+        wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _DeletePopUp);
         page.clickOnElement(deletePopUp);
+        return new RolesPage(driver);
     }
 
 }

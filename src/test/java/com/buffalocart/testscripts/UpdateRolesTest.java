@@ -5,6 +5,8 @@ import com.aventstack.extentreports.Status;
 import com.buffalocart.automationcore.Base;
 import com.buffalocart.listener.TestListener;
 import com.buffalocart.pages.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -71,12 +73,29 @@ public class UpdateRolesTest extends Base {
         updateRoles=role.clickOnEditButton(role.getRolesToEdit());
         extentTest.get().log(Status.PASS, "Clicked on edit button");
         updateRoles.selectAllRoles();
-        updateRoles.clickOnUpdateButton();
+        role=updateRoles.clickOnUpdateButton();
+        Thread.sleep(8000);
+        sign = home.clickOnUserName();
+        login = sign.clickOnLogOutButton();
+        login.enterUserName(login.get_UserName());
+        extentTest.get().log(Status.PASS, "User name is entered");
+        login.enterPassword(login.get_Password());
+        extentTest.get().log(Status.PASS, "Password is entered");
+        home = login.clickOnLoginButton();
+        extentTest.get().log(Status.PASS, "Clicked on login button");
+        userManagement.clickOnUserManagementTab();
+        role = userManagement.clickOnRolesTabs();
         updateRoles=role.clickOnEditButton(role.getRolesToEdit());
         extentTest.get().log(Status.PASS, "Clicked on edit button");
-        soft.assertTrue(updateRoles.isElementIsSelected());
-        extentTest.get().log(Status.PASS, "Clicked on edit button");
-
+        WebElement selselectAllect = driver.findElement(By.xpath("//form[@id='role_form']/div[3]/div[2]/div/label/div"));
+        String actualValue = selselectAllect.getAttribute("aria-checked");
+        soft.assertEquals(actualValue,"true");
+        role=updateRoles.clickOnUpdateButton();
+        Thread.sleep(6000);
+        sign = home.clickOnUserName();
+        login = sign.clickOnLogOutButton();
+        extentTest.get().log(Status.PASS, "Logout from user page and redirected to login page");
+        soft.assertAll();
 
     }
 

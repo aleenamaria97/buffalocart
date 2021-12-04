@@ -19,7 +19,7 @@ public class DeleteUserPage extends TestHelperUtility {
     public final String _DeletePopUp="//button[@class='swal-button swal-button--confirm swal-button--danger']";
     @FindBy(xpath = _DeletePopUp)
     private WebElement deletePopUp;
-    List<String> readExcelData = excel.readDataFromExcel(Constants.EXCEL_FILE_PATH, Constants.EXCEL_SHEET_DELETE_ROLES_PAGE);
+    List<String> readExcelData = excel.readDataFromExcel(Constants.EXCEL_FILE_PATH, Constants.EXCEL_SHEET_DELETE_USER_PAGE);
      public String get_UserNameToDelete(){
          return readExcelData.get(0);
      }

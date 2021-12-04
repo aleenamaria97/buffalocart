@@ -89,7 +89,7 @@ public class Base {
     @AfterMethod
     public void tearDown(ITestResult result) throws IOException {
         takeScreenShot(result);
-        driver.close();
+        //driver.close();
 
     }
 
