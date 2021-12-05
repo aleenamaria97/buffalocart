@@ -66,18 +66,22 @@ public class RolesTest extends Base {
         extentTest.get().log(Status.PASS, "Clicked on end tour");
         userManagement.clickOnUserManagementTab();
         role = userManagement.clickOnRolesTabs();
-        extentTest.get().log(Status.PASS, "clicked on user tab and redirected to roles page");
+        extentTest.get().log(Status.PASS, "clicked on user management tab and redirected to roles page");
         addRoles = role.clickAddRolesTab();
         addRoles.enterRoles(role.getUserRolesToEnter());
+        extentTest.get().log(Status.PASS, "Role is entered");
         role = addRoles.clickOnSaveButton();
         userManagement.clickOnUserManagementTab();
         userManagement.clickOnUserManagementTab();
         user=userManagement.clickOnUserTabs();
+        extentTest.get().log(Status.PASS, "clicked on user management tab and redirected to user page");
         addUser = user.clickAddUserTab();
         addUser.clickOnRoles();
         soft.assertTrue(addUser.getActualRole());
+        extentTest.get().log(Status.PASS, "check role is present on the add roles dropdown");
         sign = home.clickOnUserName();
         login = sign.clickOnLogOutButton();
         soft.assertAll();
+        extentTest.get().log(Status.PASS, "Logout");
     }
 }

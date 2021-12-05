@@ -5,7 +5,6 @@ import com.aventstack.extentreports.Status;
 import com.buffalocart.automationcore.Base;
 import com.buffalocart.listener.TestListener;
 import com.buffalocart.pages.*;
-import com.buffalocart.utilities.WaitUtility;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -36,15 +35,18 @@ public class AddRolesTest extends Base {
         extentTest.get().log(Status.PASS, "Clicked on end tour");
         userManagement.clickOnUserManagementTab();
         role = userManagement.clickOnRolesTabs();
-        extentTest.get().log(Status.PASS, "clicked on user tab and redirected to roles page");
+        extentTest.get().log(Status.PASS, "clicked on user management tab and redirected to roles page");
         addRoles = role.clickAddRolesTab();
+        extentTest.get().log(Status.PASS, "Clicked on add role");
         String actualTitle = addRoles.getUserActualPageTitle();
+        extentTest.get().log(Status.PASS, "Actual title generated");
         String expectedTitle = addRoles.getUserPageExpectedTitle();
+        extentTest.get().log(Status.PASS, "Expected title generated");
         soft.assertEquals(actualTitle, expectedTitle, "Error:Add user page title not founded");
         sign = home.clickOnUserName();
         login = sign.clickOnLogOutButton();
+        extentTest.get().log(Status.PASS, "Logout from the user page");
         soft.assertAll();
-
     }
     @Test(priority = 23, enabled = true, description = "TC_023_Verify  user can add roles ")
     public void verifyUserCanAddRoles() throws IOException, InterruptedException {
@@ -67,12 +69,15 @@ public class AddRolesTest extends Base {
         extentTest.get().log(Status.PASS, "clicked on user tab and redirected to roles page");
         addRoles = role.clickAddRolesTab();
         addRoles.enterRoles(addRoles.getUserRolesToEnter());
+        extentTest.get().log(Status.PASS, "Roles are entered");
         role=addRoles.clickOnSaveButton();
+        extentTest.get().log(Status.PASS, "Roles are saved");
         role.searchRoles(role.getRolesToSearch());
+        extentTest.get().log(Status.PASS, "Added role is searched");
         String actualRole = role.getActualRoleAfterSearch();
         String expectedRole = role.getRolesToSearch();
         soft.assertEquals(actualRole,expectedRole, "Error:No such roles founded");
-        Thread.sleep(6000);
+        //Thread.sleep(6000);
         sign = home.clickOnUserName();
         login = sign.clickOnLogOutButton();
         extentTest.get().log(Status.PASS, "Logout from user page and redirected to login page");

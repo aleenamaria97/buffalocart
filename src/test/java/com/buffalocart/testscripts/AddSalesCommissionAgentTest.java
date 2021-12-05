@@ -42,22 +42,32 @@ public class AddSalesCommissionAgentTest extends Base {
         sales = userManagement.clickOnSalesCommissionTab();
         extentTest.get().log(Status.PASS, "clicked on user tab and redirected to Sales commission page");
         addSales=sales.clickOnAddButton();
-        Thread.sleep(6000);
+        extentTest.get().log(Status.PASS, "clicked on add button");
         addSales.enterPrefix(addSales.get_prefix());
+        extentTest.get().log(Status.PASS, "Prefix added");
         addSales.enterFirstName(addSales.get_FirstName());
+        extentTest.get().log(Status.PASS, "First name added");
         addSales.enterLastName(addSales.get_LastName());
+        extentTest.get().log(Status.PASS, "Last name added");
         addSales.enterEmail(addSales.get_Email());
+        extentTest.get().log(Status.PASS, "Email added");
         addSales.enterConNumber(addSales.get_cNumber());
+        extentTest.get().log(Status.PASS, "mobile number added");
         addSales.enterAddress(addSales.get_Address());
+        extentTest.get().log(Status.PASS, "Address added");
         addSales.enterSalesPercentage(addSales.get_salesPer());
+        extentTest.get().log(Status.PASS, "Sales percentage added");
         sales=addSales.clickOnSaveButton();
+        extentTest.get().log(Status.PASS, "Saved the details");
         Thread.sleep(6000);
         String expectedAgentName = sales.getAddedSalesCommissionAgent();
+        extentTest.get().log(Status.PASS, "Expected agent name generated");
         List<ArrayList<String>> tableData = sales.getTableData();
         boolean value = sales.getTableDataContains(tableData, expectedAgentName);
         soft.assertTrue(value);
         sign=home.clickOnUserName();
         login=sign.clickOnLogOutButton();
         soft.assertAll();
+        extentTest.get().log(Status.PASS, "Logout");
     }
 }

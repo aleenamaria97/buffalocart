@@ -43,6 +43,7 @@ public class DeleteUserTest extends Base {
         user = userManagement.clickOnUserTabs();
         delete=user.clickOnDeleteButton(delete.get_UserNameToDelete());
         delete.clickOnDeleteOk();
+        extentTest.get().log(Status.PASS, "Deleted a User");
         Thread.sleep(6000);
         List<ArrayList<String>> tableData = user.getTableData();
         boolean value =user.getTableDataContains(tableData, delete.get_UserNameToDelete());

@@ -1,6 +1,7 @@
 package com.buffalocart.pages;
 
 import com.buffalocart.constants.Constants;
+import com.buffalocart.utilities.TableUtility;
 import com.buffalocart.utilities.TestHelperUtility;
 import com.buffalocart.utilities.WaitUtility;
 import org.openqa.selenium.By;
@@ -31,6 +32,9 @@ public class SalesCommissionAgentPage extends TestHelperUtility {
     public final String _EditButton="//i[@class='glyphicon glyphicon-edit']";
     @FindBy(xpath = _EditButton)
     private WebElement editButton;
+    public final String _DeleteButton="//button[@class='btn btn-xs btn-danger delete_commsn_agnt_button']";
+    @FindBy(xpath = _DeleteButton)
+    private WebElement deleteButton;
     boolean values;
     List<String> readExcelData = excel.readDataFromExcel(Constants.EXCEL_FILE_PATH, Constants.EXCEL_SHEET_SALES_PAGE);
     public String getUserActualPageTitle(){
@@ -47,9 +51,8 @@ public class SalesCommissionAgentPage extends TestHelperUtility {
         return readExcelData.get(8);
     }
     public List<ArrayList<String>> getTableData() {
-        wait.IMPLICIT_WAIT(6000);
         wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _cElement);
-        return table.getGridData(rowElement, colElement);
+        return TableUtility.getGridData(rowElement, colElement);
     }
     public boolean getTableDataContains(List<ArrayList<String>> tableData, String expectedUserName){
 
@@ -62,7 +65,6 @@ public class SalesCommissionAgentPage extends TestHelperUtility {
         return value;
     }
     public UpdateSaleCommissionAgentPage clickOnEditButton(String userName) throws IOException {
-        wait.IMPLICIT_WAIT(6000);
         wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _EditButton);
         List<ArrayList<WebElement>> actionData = table.actionData(rowElement, colElement);
         if (values == false) {
@@ -90,6 +92,32 @@ public class SalesCommissionAgentPage extends TestHelperUtility {
     }
     public String getSalesToEdit(){
         return readExcelData.get(9);
+    }
+    public DeleteSaleCommissionAgentPage clickOnDeleteButton(String role) throws IOException {
+        wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _DeleteButton);
+        List<ArrayList<WebElement>> actionData = table.actionData(rowElement, colElement);
+        if (values == false)
+            for (int i = 0; i < actionData.size(); i++) {
+                for (int j = 0; j < actionData.get(0).size(); j++) {
+                    WebElement data = actionData.get(i).get(j);
+                    if (values == false) {
+                        String tData = data.getText();
+                        if (tData.contains(role)) {
+                            deleteButton = driver.findElement(
+                                    By.xpath(("//table[@id='sales_commission_agent_table']//tbody//tr[" + (i + 1) + "]//td[6]//button[2]")));
+                            page.clickOnElement(deleteButton);
+                            values = true;
+                            break;
+                        }
+                    }
+                }
+
+            }
+
+        return new DeleteSaleCommissionAgentPage(driver);
+    }
+    public String getSalesToDelete(){
+        return readExcelData.get(11);
     }
 
 }

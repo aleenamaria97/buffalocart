@@ -79,7 +79,7 @@ public class Base {
 
     @BeforeMethod
     @Parameters({"browser"})
-    public void setUp(String browserName) throws Exception {
+    public void setUp(String browserName) {
         String url = prop.getProperty("url");
         testInitialize(browserName);
         driver.get(url);
@@ -89,7 +89,7 @@ public class Base {
     @AfterMethod
     public void tearDown(ITestResult result) throws IOException {
         takeScreenShot(result);
-        //driver.close();
+        driver.close();
 
     }
 
@@ -97,7 +97,7 @@ public class Base {
     public void sendingEmail() throws IOException, MessagingException {
         List<String> filenames = new ArrayList<String>();
 
-        try (Stream<Path> filePathStream = Files.walk(Paths.get(System.getProperty("user.dir") + "//screenshots//"))) {
+        try (Stream<Path> filePathStream = Files.walk(Paths.get(System.getProperty("user.dir") + "//Screenshots//"))) {
             filePathStream.forEach(filePath -> {
                 if (Files.isRegularFile(filePath)) {
                     filenames.add(filePath.toString());

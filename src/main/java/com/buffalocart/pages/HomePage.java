@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class HomePage extends TestHelperUtility {
     WebDriver driver;
@@ -36,6 +37,7 @@ public class HomePage extends TestHelperUtility {
         return page.getElementText(userName);
     }
     public SignOutPage clickOnUserName(){
+         wait.setImplicitWait(driver);
          wait.waitForVisibilityOfElements(driver,WaitUtility.LocatorType.Xpath,_UserName);
          page.clickOnElement(userName);
          return new SignOutPage(driver);

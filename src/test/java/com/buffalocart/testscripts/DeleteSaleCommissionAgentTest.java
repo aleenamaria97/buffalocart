@@ -12,24 +12,22 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeleteRolesTest extends Base {
+public class DeleteSaleCommissionAgentTest extends Base {
     LoginPage login;
     HomePage home;
     SignOutPage sign;
     UserManagementPage userManagement;
     SoftAssert soft;
-    RolesPage role;
-    DeleteRolesPage delete;
+    SalesCommissionAgentPage sales;
+    DeleteSaleCommissionAgentPage deleteSales;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
-
-    @Test(priority = 26, enabled = true, description = "TC_026_Verify user can delete a role from the list")
-    public void verifyUserCanDeleteRole() throws IOException, InterruptedException {
+    @Test(priority = 31, enabled = true, description = "TC_031_Verify user can delete a Sales Commission Agents")
+    public void verifyUserCanDeleteSalesAgent() throws IOException, InterruptedException {
+        extentTest.get().assignCategory("Smoke");
         extentTest.get().assignCategory("Regression");
         login = new LoginPage(driver);
-        soft = new SoftAssert();
-        role=new RolesPage(driver);
         userManagement = new UserManagementPage(driver);
-        delete=new DeleteRolesPage(driver);
+        soft = new SoftAssert();
         login.enterUserName(login.get_UserName());
         extentTest.get().log(Status.PASS, "User name is entered");
         login.enterPassword(login.get_Password());
@@ -39,16 +37,15 @@ public class DeleteRolesTest extends Base {
         home.endTour();
         extentTest.get().log(Status.PASS, "Clicked on end tour");
         userManagement.clickOnUserManagementTab();
-        role = userManagement.clickOnRolesTabs();
-        extentTest.get().log(Status.PASS, "directed to role page");
-        delete=role.clickOnDeleteButton(delete.get_RolesToDelete());
-        delete.clickOnDeleteOk();
-        extentTest.get().log(Status.PASS, "Deleted a role");
+        sales = userManagement.clickOnSalesCommissionTab();
+        extentTest.get().log(Status.PASS, "clicked on user tab and redirected to Sales commission page");
+        deleteSales=sales.clickOnDeleteButton(sales.getSalesToDelete());
+        sales=deleteSales.clickOnDelete();
+        extentTest.get().log(Status.PASS, "Deleted a Sales commission agent");
         Thread.sleep(6000);
-        List<ArrayList<String>> tableData = role.getTableData();
-        boolean value =role.getTableDataContains(tableData, delete.get_RolesToDelete());
+        List<ArrayList<String>> tableData = sales.getTableData();
+        boolean value =sales.getTableDataContains(tableData,sales.getSalesToDelete());
         soft.assertFalse(value,"ERROR : User Deletion Unsuccessful");
-        Thread.sleep(6000);
         sign = home.clickOnUserName();
         sign.clickOnLogOutButton();
         extentTest.get().log(Status.PASS, "Successfully Signed Out");

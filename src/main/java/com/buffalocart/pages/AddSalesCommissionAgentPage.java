@@ -52,6 +52,7 @@ public class AddSalesCommissionAgentPage extends TestHelperUtility {
     }
 
     public void enterPrefix(String pFix) {
+        wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Id,_Prefix);
         page.enterText(prefix, pFix);
     }
 

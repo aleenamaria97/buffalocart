@@ -41,6 +41,7 @@ public class UpdateSaleCommissionAgentTest extends Base {
         sales = userManagement.clickOnSalesCommissionTab();
         extentTest.get().log(Status.PASS, "clicked on user tab and redirected to Sales commission page");
         updateSales=sales.clickOnEditButton(sales.getSalesToEdit());
+        Thread.sleep(6000);
         extentTest.get().log(Status.PASS, "Clicked on edit button");
         updateSales.clickOnEmail();
         updateSales.enterEmail(updateSales.getEmailToEdit());

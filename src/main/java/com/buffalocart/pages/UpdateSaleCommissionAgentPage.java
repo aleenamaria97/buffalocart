@@ -18,19 +18,19 @@ public class UpdateSaleCommissionAgentPage extends TestHelperUtility {
     }
     private final String _email = "email";
     @FindBy(id = _email)
-    private WebElement e_mail;
+    private WebElement eMail;
     private final String _Save = "//button[@class='btn btn-primary']";
     @FindBy(xpath = _Save)
     private WebElement save;
     List<String> readData = excel.readDataFromExcel(Constants.EXCEL_FILE_PATH, Constants.EXCEL_SHEET_SALES_PAGE);
     public void clickOnEmail(){
-        page.doubleClickOnElement(driver,e_mail);
+        page.clickOnElement(eMail);
     }
     public String getEmailToEdit(){
         return readData.get(10);
     }
-    public void enterEmail(String eMail) {
-        page.enterText(e_mail, eMail);
+    public void enterEmail(String e_Mail) {
+        page.enterText(eMail, e_Mail);
     }
     public SalesCommissionAgentPage clickOnUpdate() throws IOException {
         page.clickOnElement(save);

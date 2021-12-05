@@ -165,6 +165,7 @@ public class AddUserTest extends Base {
         Thread.sleep(6000);
         extentTest.get().log(Status.PASS, "Clicked on saved button");
         String expectedUserName = addUser.getNewUserName();
+        extentTest.get().log(Status.PASS, "Expected user name generated");
         List<ArrayList<String>> tableData = user.getTableData();
         boolean value = user.getTableDataContains(tableData, expectedUserName);
         soft.assertTrue(value);

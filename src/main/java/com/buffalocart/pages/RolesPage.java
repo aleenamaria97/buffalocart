@@ -75,7 +75,6 @@ public class RolesPage extends TestHelperUtility {
         return readExcelData.get(2);
     }
     public UpdateRolesPage clickOnEditButton(String userName) throws IOException {
-        wait.IMPLICIT_WAIT(6000);
         wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _EditButton);
         List<ArrayList<WebElement>> actionData = table.actionData(rowElement, colElement);
         if (values == false) {
@@ -126,7 +125,6 @@ public class RolesPage extends TestHelperUtility {
     }
 
     public List<ArrayList<String>> getTableData() {
-        wait.IMPLICIT_WAIT(6000);
         wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _cElement);
         return table.getGridData(rowElement, colElement);
     }

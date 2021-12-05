@@ -1,6 +1,7 @@
 package com.buffalocart.pages;
 
 import com.buffalocart.constants.Constants;
+import com.buffalocart.utilities.TableUtility;
 import com.buffalocart.utilities.TestHelperUtility;
 import com.buffalocart.utilities.WaitUtility;
 import org.openqa.selenium.By;
@@ -91,9 +92,8 @@ public class UserPage extends TestHelperUtility {
        return new AddUserPage(driver);
     }
     public List<ArrayList<String>> getTableData() {
-        wait.IMPLICIT_WAIT(6000);
         wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _cElement);
-        return table.getGridData(rowElement, colElement);
+        return TableUtility.getGridData(rowElement, colElement);
     }
 
     public boolean getTableDataContains(List<ArrayList<String>> tableData, String expectedUserName){
@@ -107,7 +107,6 @@ public class UserPage extends TestHelperUtility {
         return value;
     }
     public UpdateUserPage clickOnEditButton(String userName) throws IOException {
-        wait.IMPLICIT_WAIT(6000);
         wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Xpath, _EditButton);
         List<ArrayList<WebElement>> actionData = table.actionData(rowElement, colElement);
         if (values == false) {
