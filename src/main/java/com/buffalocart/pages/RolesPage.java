@@ -140,5 +140,7 @@ public class RolesPage extends TestHelperUtility {
         }
         return value;
     }
-
-}
+    public String getUserRolesToEnter(){
+        return readExcelData.get(3);
+    }
+    }

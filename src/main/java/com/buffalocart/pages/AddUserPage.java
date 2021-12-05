@@ -3,6 +3,7 @@ package com.buffalocart.pages;
 import com.buffalocart.constants.Constants;
 import com.buffalocart.utilities.TestHelperUtility;
 import com.buffalocart.utilities.WaitUtility;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -53,6 +54,9 @@ public class AddUserPage extends TestHelperUtility {
     private final String _errMsg = "password-error";
     @FindBy(id = _errMsg)
     private WebElement errorMessage;
+    private final String _roleTab="select2-role-container";
+    @FindBy(id =_roleTab)
+    private WebElement roleTab;
     private  String newUserName;
     public  String getNewUserName() {
         return newUserName;
@@ -99,7 +103,20 @@ public class AddUserPage extends TestHelperUtility {
         wait.waitForVisibilityOfElements(driver, WaitUtility.LocatorType.Id, _role);
         page.selectDropdownByValue(role, readData.get(3));
     }
+    RolesPage rolePage=new RolesPage(driver);
+    public boolean getActualRole() {
+        List<WebElement> actualRolesWebElements = page.getOptions(driver.findElement(By.id("role")));
+        List<String> actualRolesValue = new ArrayList<>();
+        for (int i = 1; i < actualRolesWebElements.size(); i++) {
+            actualRolesValue.add(actualRolesWebElements.get(i).getText());
+        }
+        return actualRolesValue.contains(rolePage.getUserRolesToEnter());
 
+
+    }
+    public void clickOnRoles(){
+        page.clickOnElement(roleTab);
+    }
     public String get_UserName(){
         return readData.get(8);
     }

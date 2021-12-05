@@ -34,8 +34,8 @@ public class AddRolesPage extends TestHelperUtility {
     public String getUserRolesToEnter(){
         return readExcelData.get(1);
     }
-    public void enterRoles(String eMail) {
-        page.enterText(addRoles, eMail);
+    public void enterRoles(String role) {
+        page.enterText(addRoles, role);
     }
     public RolesPage clickOnSaveButton() throws IOException {
         page.scrollByJS(driver,saveButton);

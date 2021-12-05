@@ -2,6 +2,7 @@ package com.buffalocart.pages;
 
 import com.buffalocart.constants.Constants;
 import com.buffalocart.utilities.TestHelperUtility;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,6 +20,9 @@ public class UpdateRolesPage extends TestHelperUtility {
     public final String _selectRoles="//form[@id='role_form']/div[3]/div[2]/div/label";
     @FindBy(xpath = _selectRoles)
     private WebElement selectRoles;
+    public final String _Status="//form[@id='role_form']/div[3]/div[2]/div/label/div";
+    @FindBy(xpath = _Status)
+    private WebElement status;
     public final String _UpdateButton="//button[@class='btn btn-primary pull-right']";
     @FindBy(xpath = _UpdateButton)
     private WebElement updateButton;
@@ -34,8 +38,11 @@ public class UpdateRolesPage extends TestHelperUtility {
     public void selectAllRoles(){
         page.clickOnElement(selectRoles);
     }
-    public boolean isElementIsSelected(){
-        return page.isElementSelected(selectRoles);
+    public String getActualStatus(){
+        return page.getAttributeValue(status,"aria-checked");
+    }
+    public String getExpectedStatus(){
+        return "true";
     }
     public RolesPage clickOnUpdateButton() throws IOException {
         page.scrollByJS(driver,updateButton);

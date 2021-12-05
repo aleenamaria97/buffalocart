@@ -65,12 +65,13 @@
         </class>
         <class name="com.buffalocart.testscripts.ViewUserTest">
             <methods>
-                <exclude name="verifyUserTheDetailsDisplayedOnViewUserPage"/>
+                <exclude name="verifyUserDetailsDisplayedOnViewUserPage"/>
             </methods>
         </class>
         <class name="com.buffalocart.testscripts.RolesTest">
             <methods>
                 <exclude name="verifyRolesPageTitle"/>
+                <include name="verifyWhetherTheAddedRoleInTheRolePageIsListedInRolesFieldInUserAddPage"/>
             </methods>
         </class>
         <class name="com.buffalocart.testscripts.AddRolesTest">
@@ -82,7 +83,7 @@
         <class name="com.buffalocart.testscripts.UpdateRolesTest">
             <methods>
                 <exclude name="verifyEditRolesPageTitle"/>
-                <include name="verifyUserCanUpdateRole"/>
+                <exclude name="verifyUserCanUpdateRole"/>
             </methods>
         </class>
         <class name="com.buffalocart.testscripts.DeleteRolesTest">

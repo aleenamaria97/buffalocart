@@ -87,9 +87,7 @@ public class UpdateRolesTest extends Base {
         role = userManagement.clickOnRolesTabs();
         updateRoles=role.clickOnEditButton(role.getRolesToEdit());
         extentTest.get().log(Status.PASS, "Clicked on edit button");
-        WebElement selselectAllect = driver.findElement(By.xpath("//form[@id='role_form']/div[3]/div[2]/div/label/div"));
-        String actualValue = selselectAllect.getAttribute("aria-checked");
-        soft.assertEquals(actualValue,"true");
+        soft.assertEquals(updateRoles.getActualStatus(),updateRoles.getExpectedStatus());
         role=updateRoles.clickOnUpdateButton();
         Thread.sleep(6000);
         sign = home.clickOnUserName();
