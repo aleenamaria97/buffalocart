@@ -36,7 +36,7 @@ public class UpdateUserPage extends TestHelperUtility {
         return  readExcelData.get(1);
     }
     public void clickOnEmail(){
-        page.doubleClickOnElement(driver,email);
+        page.clickOnElement(email);
     }
     public void set_Email(String eMail){
         page.enterText(email,eMail);

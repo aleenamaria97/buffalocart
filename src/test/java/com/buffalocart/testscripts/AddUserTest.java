@@ -92,8 +92,8 @@ public class AddUserTest extends Base {
         addUser.enterPassWord(addUser.get_PWord());
         extentTest.get().log(Status.PASS, "New user credentials entered");
         login.clickOnLoginButton();
-        String actualTitle= home.getHomePageActualTitle();
-        String expectedTitle= home.getHomePageExpectedTitle();
+        String actualTitle= home.verifyUserName();
+        String expectedTitle= addUser.getExpectedUserName();
         soft.assertEquals(actualTitle,expectedTitle,"Verify user login with newly added user test failed");
         sign= home.clickOnUserName();
         login=sign.clickOnLogOutButton();

@@ -105,7 +105,7 @@ public class AddUserPage extends TestHelperUtility {
     }
     RolesPage rolePage=new RolesPage(driver);
     public boolean getActualRole() {
-        List<WebElement> actualRolesWebElements = page.getOptions(driver.findElement(By.id("role")));
+        List<WebElement> actualRolesWebElements = page.getOptions(role);
         List<String> actualRolesValue = new ArrayList<>();
         for (int i = 1; i < actualRolesWebElements.size(); i++) {
             actualRolesValue.add(actualRolesWebElements.get(i).getText());

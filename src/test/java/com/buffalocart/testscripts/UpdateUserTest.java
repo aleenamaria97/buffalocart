@@ -71,6 +71,7 @@ public class UpdateUserTest extends Base {
         user = userManagement.clickOnUserTabs();
         updateUser=user.clickOnEditButton(user.getUserNameToSearch());
         extentTest.get().log(Status.PASS, "Clicked on edit button");
+        Thread.sleep(6000);
         updateUser.clickOnEmail();
         updateUser.set_Email(updateUser.get_Email());
         extentTest.get().log(Status.PASS, "email is edited");

@@ -1,5 +1,9 @@
 package com.buffalocart.constants;
 
+import org.apache.xmlbeans.impl.xb.xsdschema.Public;
+import org.bouncycastle.pqc.crypto.newhope.NHOtherInfoGenerator;
+import org.openqa.selenium.support.PageFactory;
+
 public class Constants {
     public static final String CONFIG_FILE = "\\src\\main\\resources\\config.properties";
     public static final String EXCEL_FILE_PATH="\\src\\main\\resources\\TestData.xlsx";
@@ -16,4 +20,5 @@ public class Constants {
     public static final String EXCEL_SHEET_ADD_ROLES_PAGE="AddRoles";
     public static final String EXCEL_SHEET_UPDATE_ROLES_PAGE="UpdateRoles";
     public static final String EXCEL_SHEET_DELETE_ROLES_PAGE="DeleteRoles";
+    public static final String EXCEL_SHEET_SALES_PAGE="Sales";
 }

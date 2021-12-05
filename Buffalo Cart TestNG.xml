@@ -71,7 +71,7 @@
         <class name="com.buffalocart.testscripts.RolesTest">
             <methods>
                 <exclude name="verifyRolesPageTitle"/>
-                <include name="verifyWhetherTheAddedRoleInTheRolePageIsListedInRolesFieldInUserAddPage"/>
+                <exclude name="verifyWhetherTheAddedRoleInTheRolePageIsListedInRolesFieldInUserAddPage"/>
             </methods>
         </class>
         <class name="com.buffalocart.testscripts.AddRolesTest">
@@ -89,6 +89,21 @@
         <class name="com.buffalocart.testscripts.DeleteRolesTest">
             <methods>
                 <exclude name="verifyUserCanDeleteRole"/>
+            </methods>
+        </class>
+        <class name="com.buffalocart.testscripts.SalesCommissionAgentTest">
+            <methods>
+                <exclude name="verifySalesCommissionAgentPageTitle"/>
+            </methods>
+        </class>
+        <class name="com.buffalocart.testscripts.AddSalesCommissionAgentTest">
+            <methods>
+                <exclude name="verifyUserCanAddSalesAgent"/>
+            </methods>
+        </class>
+        <class name="com.buffalocart.testscripts.UpdateSaleCommissionAgentTest">
+            <methods>
+                <include name="verifyEditSalesAgentDetails"/>
             </methods>
         </class>
     </classes>
