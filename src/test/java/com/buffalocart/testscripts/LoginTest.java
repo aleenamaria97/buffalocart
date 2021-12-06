@@ -18,7 +18,7 @@ public class LoginTest extends Base {
     HomePage home;
     SignOutPage sign;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
-    @Test(priority=1,enabled=true,description ="TC_001_Verify Login page title")
+    @Test(priority=1,enabled=true,description ="TC_001_Verify Login page title",groups = "Regression")
     public void verifyLoginPageTitle() throws IOException {
         extentTest.get().assignCategory("Regression");
         login=new LoginPage(driver);
@@ -30,7 +30,7 @@ public class LoginTest extends Base {
         extentTest.get().log(Status.PASS, "verify title test case passed");
 
     }
-    @Test(priority = 2,enabled = true,description = "TC_002_Verify user login with valid user credentials")
+    @Test(priority = 2,enabled = true,description = "TC_002_Verify user login with valid user credentials",groups = {"Smoke","Regression"})
     public void verifyUserLoginWithValidUserCredentials() throws IOException {
         extentTest.get().assignCategory("Regression");
         extentTest.get().assignCategory("Smoke");
@@ -54,7 +54,7 @@ public class LoginTest extends Base {
         login=sign.clickOnLogOutButton();
         soft.assertAll();
     }
-    @Test(priority = 3,enabled = true,description = "TC_003_Verify the error message displayed for user login with invalid credentials")
+    @Test(priority = 3,enabled = true,description = "TC_003_Verify the error message displayed for user login with invalid credentials",groups = "Regression")
     public void verifyTheErrorMessageDisplayedForUserLoginWithInValidUserCredentials() throws IOException {
         extentTest.get().assignCategory("Regression");
         login=new LoginPage(driver);
@@ -71,7 +71,7 @@ public class LoginTest extends Base {
         Assert.assertEquals(actualErrorMessage,expectedErrorMessage,"Error:Test Failed");
         extentTest.get().log(Status.PASS, "Verify user login with in valid user credentials test passed");
     }
-    @Test(priority = 4,enabled = true,description = "TC_004_Verify whether the user is able to click on 'Remember me' checkbox")
+    @Test(priority = 4,enabled = true,description = "TC_004_Verify whether the user is able to click on 'Remember me' checkbox",groups = "Regression")
     public void verifyWhetherTheUserIsAbleToClickOnRememberMeCheckbox() throws IOException {
         extentTest.get().assignCategory("Regression");
         login=new LoginPage(driver);

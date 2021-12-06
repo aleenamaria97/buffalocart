@@ -22,7 +22,7 @@ public class UpdateSaleCommissionAgentTest extends Base {
     UpdateSaleCommissionAgentPage updateSales;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
 
-    @Test(priority = 30, enabled = true, description = "TC_030_Verify Edit sales agent details")
+    @Test(priority = 30, enabled = true, description = "TC_030_Verify Edit sales agent details",groups = {"Smoke","Regression"})
     public void verifyEditSalesAgentDetails () throws IOException, InterruptedException {
         extentTest.get().assignCategory("Smoke");
         extentTest.get().assignCategory("Regression");

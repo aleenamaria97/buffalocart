@@ -18,7 +18,7 @@ public class SalesCommissionAgentTest extends Base {
     SoftAssert soft;
     SalesCommissionAgentPage sales;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
-    @Test(priority = 28, enabled = true, description = "TC_028_Verify  Sales Commission Agents page title")
+    @Test(priority = 28, enabled = true, description = "TC_028_Verify  Sales Commission Agents page title",groups = "Regression")
     public void verifySalesCommissionAgentPageTitle() throws IOException {
         extentTest.get().assignCategory("Regression");
         login = new LoginPage(driver);

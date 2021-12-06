@@ -77,7 +77,7 @@
         <class name="com.buffalocart.testscripts.AddRolesTest">
             <methods>
                 <exclude name="verifyAddRolesPageTitle"/>
-                <include name="verifyUserCanAddRoles"/>
+                <exclude name="verifyUserCanAddRoles"/>
             </methods>
         </class>
         <class name="com.buffalocart.testscripts.UpdateRolesTest">

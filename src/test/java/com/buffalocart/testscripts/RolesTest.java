@@ -22,7 +22,7 @@ public class RolesTest extends Base {
     AddUserPage addUser;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
 
-    @Test(priority = 21, enabled = true, description = "TC_021_Verify Roles page title")
+    @Test(priority = 21, enabled = true, description = "TC_021_Verify Roles page title",groups = "Regression")
     public void verifyRolesPageTitle() throws IOException {
         extentTest.get().assignCategory("Regression");
         login = new LoginPage(driver);
@@ -50,8 +50,8 @@ public class RolesTest extends Base {
         soft.assertAll();
     }
 
-    @Test(priority = 27, enabled = true, description = "TC_027_Verify whether the added role in Role page is listed in roles field in user add page")
-    public void verifyWhetherTheAddedRoleInTheRolePageIsListedInRolesFieldInUserAddPage() throws IOException, InterruptedException {
+    @Test(priority = 27, enabled = true, description = "TC_027_Verify whether the added role in Role page is listed in roles field in user add page",groups = "Regression")
+    public void verifyWhetherTheAddedRoleInTheRolePageIsListedInRolesFieldInUserAddPage() throws IOException {
         extentTest.get().assignCategory("Regression");
         login = new LoginPage(driver);
         soft = new SoftAssert();

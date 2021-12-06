@@ -22,7 +22,7 @@ public class UpdateUserTest extends Base {
     SignOutPage sign;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
 
-    @Test(priority = 17, enabled = true, description = "TC_017_Verify Edit User page title")
+    @Test(priority = 17, enabled = true, description = "TC_017_Verify Edit User page title",groups = {"Sanity","Regression"})
     public void verifyEditUserPageTitle() throws IOException, InterruptedException {
         extentTest.get().assignCategory("Regression");
         extentTest.get().assignCategory("Sanity");
@@ -52,7 +52,7 @@ public class UpdateUserTest extends Base {
         soft.assertAll();
 
     }
-    @Test(priority = 18, enabled = true, description = "TC_018_Verify user can edit the user details")
+    @Test(priority = 18, enabled = true, description = "TC_018_Verify user can edit the user details",groups = {"Regression"})
     public void verifyUserCanEditTheUserDetails() throws IOException, InterruptedException {
         extentTest.get().assignCategory("Regression");
         login = new LoginPage(driver);

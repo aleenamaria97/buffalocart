@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class DeleteSaleCommissionAgentPage extends TestHelperUtility {
     WebDriver driver;
-    public DeleteSaleCommissionAgentPage(WebDriver driver) throws IOException {
+    public DeleteSaleCommissionAgentPage(WebDriver driver) {
         this.driver=driver;
         PageFactory.initElements(driver,this);
     }

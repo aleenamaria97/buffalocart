@@ -18,7 +18,7 @@ public class HomeTest extends Base {
     SignOutPage sign;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
 
-    @Test(priority = 6, enabled = true, description = "TC_006_Verify home page title")
+    @Test(priority = 6, enabled = true, description = "TC_006_Verify home page title",groups = "Regression")
     public void verifyHomePageTitle() throws IOException {
         extentTest.get().assignCategory("Regression");
         login = new LoginPage(driver);
@@ -39,7 +39,7 @@ public class HomeTest extends Base {
         extentTest.get().log(Status.PASS, "Verify home page title test passed");
         soft.assertAll();
     }
-    @Test(priority = 7, enabled = true, description = "TC_007_Verify date displayed in home page ")
+    @Test(priority = 7, enabled = true, description = "TC_007_Verify date displayed in home page ",groups = "Regression")
     public void verifyDateDisplayedInHomePage() throws IOException {
         extentTest.get().assignCategory("Regression");
         login = new LoginPage(driver);

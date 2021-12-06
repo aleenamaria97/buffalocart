@@ -19,7 +19,7 @@ public class AddRolesTest extends Base {
     RolesPage role;
     AddRolesPage addRoles;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
-    @Test(priority = 22, enabled = true, description = "TC_022_Verify  Add Roles page title")
+    @Test(priority = 22, enabled = true, description = "TC_022_Verify  Add Roles page title",groups = "Regression")
     public void verifyAddRolesPageTitle() throws IOException {
         extentTest.get().assignCategory("Regression");
         login = new LoginPage(driver);
@@ -48,7 +48,7 @@ public class AddRolesTest extends Base {
         extentTest.get().log(Status.PASS, "Logout from the user page");
         soft.assertAll();
     }
-    @Test(priority = 23, enabled = true, description = "TC_023_Verify  user can add roles ")
+    @Test(priority = 23, enabled = true, description = "TC_023_Verify  user can add roles ",groups = {"Regression","Smoke","Sanity"})
     public void verifyUserCanAddRoles() throws IOException, InterruptedException {
         extentTest.get().assignCategory("Sanity");
         extentTest.get().assignCategory("Smoke");
@@ -77,7 +77,7 @@ public class AddRolesTest extends Base {
         String actualRole = role.getActualRoleAfterSearch();
         String expectedRole = role.getRolesToSearch();
         soft.assertEquals(actualRole,expectedRole, "Error:No such roles founded");
-        //Thread.sleep(6000);
+        Thread.sleep(6000);
         sign = home.clickOnUserName();
         login = sign.clickOnLogOutButton();
         extentTest.get().log(Status.PASS, "Logout from user page and redirected to login page");

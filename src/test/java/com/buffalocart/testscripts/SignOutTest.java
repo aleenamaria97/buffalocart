@@ -17,7 +17,7 @@ public class SignOutTest extends Base {
     HomePage home;
     SignOutPage sign;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
-    @Test(priority = 8, enabled = true, description = "TC_008_Verify whether user is navigating to login page by clicking on Sign out button")
+    @Test(priority = 8, enabled = true, description = "TC_008_Verify whether user is navigating to login page by clicking on Sign out button",groups = {"Smoke","Regression"})
     public void verifyUserIsNavigatingToLoginPageByClickingOnSignOutButton() throws IOException {
         extentTest.get().assignCategory("Regression");
         extentTest.get().assignCategory("Smoke");

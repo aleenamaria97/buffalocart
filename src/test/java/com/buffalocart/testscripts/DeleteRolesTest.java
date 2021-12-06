@@ -22,7 +22,7 @@ public class DeleteRolesTest extends Base {
     DeleteRolesPage delete;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
 
-    @Test(priority = 26, enabled = true, description = "TC_026_Verify user can delete a role from the list")
+    @Test(priority = 26, enabled = true, description = "TC_026_Verify user can delete a role from the list",groups = {"Smoke"})
     public void verifyUserCanDeleteRole() throws IOException, InterruptedException {
         extentTest.get().assignCategory("Regression");
         login = new LoginPage(driver);

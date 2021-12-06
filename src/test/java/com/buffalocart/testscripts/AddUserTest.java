@@ -21,7 +21,7 @@ public class AddUserTest extends Base {
     UserPage user;
     AddUserPage addUser;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
-    @Test(priority = 13, enabled = true, description = "TC_013_Verify the error message displayed without filling mandatory fields in add user form")
+    @Test(priority = 13, enabled = true, description = "TC_013_Verify the error message displayed without filling mandatory fields in add user form",groups = "Regression")
     public void verifyTheErrorMessageDisplayedWithoutFillingMandatoryFieldsInAddUserForm() throws IOException {
         extentTest.get().assignCategory("Regression");
         login = new LoginPage(driver);
@@ -49,8 +49,8 @@ public class AddUserTest extends Base {
         extentTest.get().log(Status.PASS, "Logout from user page and redirected to login page");
         soft.assertAll();
     }
-    @Test(priority = 14, enabled = true, description = "TC_014_Verify user login with newly added user")
-    public void verifyUserLoginWithNewlyAddedUser() throws IOException, InterruptedException {
+    @Test(priority = 14, enabled = true, description = "TC_014_Verify user login with newly added user",groups = "Regression")
+    public void verifyUserLoginWithNewlyAddedUser() throws IOException {
         extentTest.get().assignCategory("Regression");
         login = new LoginPage(driver);
         soft = new SoftAssert();
@@ -100,7 +100,7 @@ public class AddUserTest extends Base {
         extentTest.get().log(Status.PASS, "Clicked on log out");
         soft.assertAll();
     }
-    @Test(priority = 15, enabled = true, description = "TC_015_Verify  Add Users page title")
+    @Test(priority = 15, enabled = true, description = "TC_015_Verify  Add Users page title",groups = "Regression")
     public void verifyAddedUsePageTitle() throws IOException {
         extentTest.get().assignCategory("Regression");
         login = new LoginPage(driver);
@@ -125,7 +125,7 @@ public class AddUserTest extends Base {
         login=sign.clickOnLogOutButton();
         soft.assertAll();
     }
-    @Test(priority = 16, enabled = true, description = "TC_016_Verify user can add user details")
+    @Test(priority = 16, enabled = true, description = "TC_016_Verify user can add user details",groups = {"Smoke","Sanity","Regression"})
     public void verifyUserCanAddUserDetails() throws IOException, InterruptedException {
         extentTest.get().assignCategory("Smoke");
         extentTest.get().assignCategory("Sanity");

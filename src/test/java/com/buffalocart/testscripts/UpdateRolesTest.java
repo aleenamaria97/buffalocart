@@ -5,8 +5,6 @@ import com.aventstack.extentreports.Status;
 import com.buffalocart.automationcore.Base;
 import com.buffalocart.listener.TestListener;
 import com.buffalocart.pages.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -21,7 +19,7 @@ public class UpdateRolesTest extends Base {
     SoftAssert soft;
     UpdateRolesPage updateRoles;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
-    @Test(priority = 24, enabled = true, description = "TC_024_Verify Edit Role page title")
+    @Test(priority = 24, enabled = true, description = "TC_024_Verify Edit Role page title",groups = {"Sanity","Smoke","Regression"})
     public void verifyEditRolesPageTitle() throws IOException, InterruptedException {
         extentTest.get().assignCategory("Sanity");
         extentTest.get().assignCategory("Smoke");
@@ -51,7 +49,7 @@ public class UpdateRolesTest extends Base {
         extentTest.get().log(Status.PASS, "Logout from user page and redirected to login page");
         soft.assertAll();
     }
-    @Test(priority = 25, enabled = true, description = "TC_025_Verify user can update  a role ")
+    @Test(priority = 25, enabled = true, description = "TC_025_Verify user can update  a role ",groups = {"Sanity","Smoke","Regression"})
     public void verifyUserCanUpdateRole() throws IOException, InterruptedException {
         extentTest.get().assignCategory("Sanity");
         extentTest.get().assignCategory("Smoke");

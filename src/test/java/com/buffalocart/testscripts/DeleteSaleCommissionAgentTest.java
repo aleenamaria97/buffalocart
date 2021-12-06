@@ -21,7 +21,7 @@ public class DeleteSaleCommissionAgentTest extends Base {
     SalesCommissionAgentPage sales;
     DeleteSaleCommissionAgentPage deleteSales;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
-    @Test(priority = 31, enabled = true, description = "TC_031_Verify user can delete a Sales Commission Agents")
+    @Test(priority = 31, enabled = true, description = "TC_031_Verify user can delete a Sales Commission Agents",groups = {"Smoke","Regression"})
     public void verifyUserCanDeleteSalesAgent() throws IOException, InterruptedException {
         extentTest.get().assignCategory("Smoke");
         extentTest.get().assignCategory("Regression");

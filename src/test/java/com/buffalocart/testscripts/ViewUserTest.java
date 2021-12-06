@@ -22,7 +22,7 @@ public class ViewUserTest extends Base {
     ViewUserPage view;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
 
-    @Test(priority = 20, enabled = true, description = "TC_020_Verify  the details displayed on view user page")
+    @Test(priority = 20, enabled = true, description = "TC_020_Verify  the details displayed on view user page",groups = "Regression")
     public void verifyUserDetailsDisplayedOnViewUserPage() throws IOException {
         extentTest.get().assignCategory("Regression");
         login = new LoginPage(driver);

@@ -24,7 +24,7 @@ public class DeleteUserTest extends Base {
     DeleteUserPage delete;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
 
-    @Test(priority = 19, enabled = true, description = "TC_019_Verify user can delete a user")
+    @Test(priority = 19, enabled = true, description = "TC_019_Verify user can delete a user",groups = "Regression")
     public void verifyUserCanDeleteAUser() throws IOException, InterruptedException {
         extentTest.get().assignCategory("Regression");
         login = new LoginPage(driver);

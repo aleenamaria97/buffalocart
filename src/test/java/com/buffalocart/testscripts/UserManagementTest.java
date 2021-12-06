@@ -19,7 +19,7 @@ public class UserManagementTest extends Base {
     UserPage user;
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
 
-    @Test(priority = 9, enabled = true, description = "TC_009_Verify the User management sub tabs")
+    @Test(priority = 9, enabled = true, description = "TC_009_Verify the User management sub tabs",groups = "Regression")
     public void verifyUserManagementSubTabs() throws IOException {
         extentTest.get().assignCategory("Regression");
         login=new LoginPage(driver);

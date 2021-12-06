@@ -37,7 +37,6 @@ public class HomePage extends TestHelperUtility {
         return page.getElementText(userName);
     }
     public SignOutPage clickOnUserName(){
-         wait.setImplicitWait(driver);
          wait.waitForVisibilityOfElements(driver,WaitUtility.LocatorType.Xpath,_UserName);
          page.clickOnElement(userName);
          return new SignOutPage(driver);
@@ -54,7 +53,7 @@ public class HomePage extends TestHelperUtility {
     }
    public String setHomePageDate(){
        Date date = new Date();
-       String exdate = new SimpleDateFormat("MM/dd/yyyy").format(date);
-       return exdate;
+       String exDate = new SimpleDateFormat("MM/dd/yyyy").format(date);
+       return exDate;
    }
   }
